@@ -19,13 +19,14 @@ class Base {
         );
         //creamos una instancia de PDO
         try{
-            $this->dbh = new PDO($dsn, $this->usuario, $this->pass, $opciones);
+            $this->dbh = new PDO($dsn, $this->user, $this->pass, $opciones);
             $this->dbh->exec('set names utf8');
         }catch(PDOException $e){
             $this->error = $e->getMessage();
             echo $this->error;
         }
     }
+   //creamos la funcion donde se gestionara los querys  
     public function query($sql)
     {
         $this->stmt=$this->dbh->prepare($sql);
@@ -69,7 +70,7 @@ class Base {
         return $this->stmt->fetch(PDO::FETCH_OBJ);  
     }
     //obtenemos la cantidad de registros
-    public function conteo()
+    public function rowconut()
     {
         $this->execute();
         return $this->stmt->rowCount();
