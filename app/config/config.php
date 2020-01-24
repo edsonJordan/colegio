@@ -3,7 +3,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');
-define('DB_NAME', 'db_transporte');
+define('DB_NAME', 'db_colegio');
 define('RUTAL_APP', dirname(dirname(__FILE__)));
 /* RUTA DEL SISTEMA GENERAL */
 define('RUTA_URL', 'http://localhost:8080/colegio');
