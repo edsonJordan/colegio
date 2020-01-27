@@ -5,7 +5,7 @@
     3-parametro
 */
     class Core{
-            protected $ControladorActual = 'Principal';
+            protected $ControladorActual = 'General';
             protected $MetodoActual = 'Index';
             protected $parametros = [];
             //constructor

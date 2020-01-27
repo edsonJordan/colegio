@@ -1,13 +1,9 @@
-<?php 
-
-
-//var_dump($url[1]);
-
-  require RUTAL_APP . '/views/templates/header.php'; 
+<?php   
   $dashboard = 'Administración';
   $url = explode('/', $vista);
   $controlador = $url[1];
   $metodo = $url[2];
+  require RUTAL_APP . '/views/templates/header.php'; 
   require RUTAL_APP . '/views/templates/head.php'; 
 ?>
     <!-- Main content -->

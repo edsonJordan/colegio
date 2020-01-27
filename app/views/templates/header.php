@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -157,9 +157,9 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="<?php echo RUTA_DIST; ?>/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="<?php echo RUTA_DIST; ?>/img/sunqupacha.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">Suncupacha school</span>
     </a>
 
     <!-- Sidebar -->
@@ -170,7 +170,7 @@
           <img src="<?php echo RUTA_DIST; ?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Edson Huamani</a>
         </div>
       </div>
 
@@ -183,27 +183,45 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Gestiones
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
+              <li class="nav-item">                
+                <a href="./index.html" class="nav-link <?php if($url[1] == "General"){echo "active";} ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
+                  <p>General</p>
+                </a>
+              </li>
+              <li class="nav-item">                
+                <a href="./index.html" class="nav-link <?php if($url[1] == "Matricula"){echo "active";} ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Matriculas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="./index2.html" class="nav-link <?php if($url[1] == "Pagos"){echo "active";} ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
+                  <p>Pagos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="./index3.html" class="nav-link <?php if($url[1] == "Notas"){echo "active";} ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
+                  <p>Notas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./index3.html" class="nav-link <?php if($url[1] == "Trabajos"){echo "active";} ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Trabajos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo RUTA_URL; ?>/asistencias" class="nav-link <?php if($url[1] == "Asistencias"){echo "active";} ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Asistencias</p>
                 </a>
               </li>
             </ul>
