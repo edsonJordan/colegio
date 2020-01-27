@@ -6,7 +6,7 @@
 */
     class Core{
             protected $ControladorActual = 'Principal';
-            protected $MetodoActual = 'index';
+            protected $MetodoActual = 'Index';
             protected $parametros = [];
             //constructor
             public function __construct(){
@@ -14,11 +14,10 @@
                //buscar existe el controllador
                $url = $this->getUrl();
              
-               var_dump($url[0]);
+               //var_dump($url[0]);
                if(file_exists('../app/controllers/' .ucwords($url[0].'.php'))){                      
                 //se setea como controlador
-                    $this->ControladorActual = ucwords($url[0]);
-                
+                    $this->ControladorActual = ucwords($url[0]);                
                     //unset indi
                     unset($url[0]);                                        
                }
