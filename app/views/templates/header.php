@@ -159,7 +159,7 @@
     <a href="index3.html" class="brand-link">
       <img src="<?php echo RUTA_DIST; ?>/img/sunqupacha.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Suncupacha school</span>
+      <span class="brand-text font-weight-light">Sunqupacha school</span>
     </a>
 
     <!-- Sidebar -->
@@ -189,39 +189,45 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">                
-                <a href="./index.html" class="nav-link <?php if($url[1] == "General"){echo "active";} ?>">
+                <a href="<?php echo RUTA_URL; ?>/general" class="nav-link <?php if($url[1] == "General"){echo "active";} ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>General</p>
                 </a>
               </li>
               <li class="nav-item">                
-                <a href="./index.html" class="nav-link <?php if($url[1] == "Matricula"){echo "active";} ?>">
+                <a href="<?php echo RUTA_URL; ?>/matricula" class="nav-link <?php if($url[1] == "Matricula"){echo "active";} ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Matriculas</p>
+                  <p>Matricula</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link <?php if($url[1] == "Pagos"){echo "active";} ?>">
+                <a href="<?php echo RUTA_URL;?>/pagos" class="nav-link <?php if($url[1] == "Pagos"){echo "active";} ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pagos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link <?php if($url[1] == "Notas"){echo "active";} ?>">
+                <a href="<?php echo RUTA_URL;?>/calificaciones" class="nav-link <?php if($url[1] == "Calificaciones"){echo "active";} ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Notas</p>
+                  <p>Calificaciones</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link <?php if($url[1] == "Trabajos"){echo "active";} ?>">
+                <a href="<?php echo RUTA_URL;?>/deberes" class="nav-link <?php if($url[1] == "Deberes"){echo "active";} ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Trabajos</p>
+                  <p>Deberes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo RUTA_URL; ?>/asistencias" class="nav-link <?php if($url[1] == "Asistencias"){echo "active";} ?>">
+                <a href="<?php echo RUTA_URL; ?>/asistencia" class="nav-link <?php if($url[1] == "Asistencia"){echo "active";} ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Asistencias</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo RUTA_URL; ?>/usuarios" class="nav-link <?php if($url[1] == "Usuarios"){echo "active";} ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Usuarios</p>
                 </a>
               </li>
             </ul>

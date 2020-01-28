@@ -1,5 +1,5 @@
 <?php 
-class Notas extends Controller{
+class Deberes extends Controller{
     public function __construct()
     {
         $this->principalmodels = $this->modelo('Principalmodels');
@@ -7,7 +7,7 @@ class Notas extends Controller{
     }
     public function Index(){
         $amigos = $this->principalmodels->consulta();        
-        $this->vista('/Notas/Inicio');   
+        $this->vista('/Deberes/Inicio');   
     }
     
 }
