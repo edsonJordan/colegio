@@ -63,6 +63,11 @@ class Base {
         $this->execute();
         return $this->stmt->fetchALL(PDO::FETCH_OBJ);
     }
+    public function registros_array()
+    {
+        $this->execute();
+        return $this->stmt->fetchALL(PDO::FETCH_ASSOC);
+    }
     //creamos una funcion donde ejecuta el query y solo devuelve una registro
     public function registro()
     {
