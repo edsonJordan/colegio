@@ -10,4 +10,5 @@ class Usuarios extends Controller{
      $datos = ['tipos_user' => $tipe_user];
         $this->vista('/Usuarios/Inicio', $datos);
     }
+    
 }

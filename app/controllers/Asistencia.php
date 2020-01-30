@@ -6,7 +6,7 @@ class Asistencia extends Controller{
         $this->redi = $this->redireccion();
     }
     public function Index(){
-        $amigos = $this->principalmodels->consulta();        
+     //   $amigos = $this->principalmodels->consulta();        
         $this->vista('/Asistencia/Inicio');   
     }
     
