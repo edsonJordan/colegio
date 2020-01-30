@@ -180,8 +180,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview <?php if($gestion){echo 'menu-open';} ?>">
-            <a href="#" class="nav-link <?php if($gestion){echo 'active';} ?>">
+          <li class="nav-item has-treeview <?php if( !empty($gestion) and $gestion){echo 'menu-open';} ?>">
+            <a href="#" class="nav-link <?php if(!empty($gestion) and $gestion){echo 'active';} ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Gestion
@@ -368,31 +368,31 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
+          <li class="nav-item has-treeview <?php if( !empty($usuarios) and $usuarios){echo 'menu-open';} ?>">
+            <a href="#" class="nav-link <?php if( !empty($usuarios) and $usuarios){echo 'active';} ?>">              
+              <i class="nav-icon ion ion-person"></i>
               <p>
-                Tables
+                Usuarios
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
+                <a href="<?php echo RUTA_URL; ?>/usuarios/agregar" class="nav-link <?php   if( !empty($agregarusuarios) and $agregarusuarios){echo 'active';} ?> ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
+                  <p>Agregar usuarios</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/tables/data.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
+                  <p>Ver usuarios</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/tables/jsgrid.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>jsGrid</p>
+                  <p>Asignar roles</p>
                 </a>
               </li>
             </ul>
