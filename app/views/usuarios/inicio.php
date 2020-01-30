@@ -10,7 +10,7 @@
     <!-- Main content -->
     <section class="content">
     <?php         
-    $tipo_color = ['bg-primary', 'bg-success', 'bg-warning', 'bg-danger', 'bg-info'];               
+    $tipo_color = ['bg-primary', 'bg-success', 'bg-warning', 'bg-danger', 'bg-info', 'bg-indigo'];               
     ?>
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
@@ -55,9 +55,10 @@
                 <table class="table table-striped table-valign-middle">
                   <thead>
                   <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Sales</th>
+                    <th>Alumnos</th>
+                    <th>Grado</th>
+                    <th>Seccion</th>
+                    <th>Promedios</th>
                     <th>More</th>
                   </tr>
                   </thead>
@@ -67,6 +68,7 @@
                       <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
                       Some Product
                     </td>
+                    <td>$13 USD</td>
                     <td>$13 USD</td>
                     <td>
                       <small class="text-success mr-1">
@@ -87,6 +89,7 @@
                       Another Product
                     </td>
                     <td>$29 USD</td>
+                    <td>$13 USD</td>
                     <td>
                       <small class="text-warning mr-1">
                         <i class="fas fa-arrow-down"></i>
@@ -106,6 +109,7 @@
                       Amazing Product
                     </td>
                     <td>$1,230 USD</td>
+                    <td>$13 USD</td>
                     <td>
                       <small class="text-danger mr-1">
                         <i class="fas fa-arrow-down"></i>
@@ -122,10 +126,11 @@
                   <tr>
                     <td>
                       <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
-                      Perfect Item
+                       Item
                       <span class="badge bg-danger">NEW</span>
                     </td>
                     <td>$199 USD</td>
+                    <td>$13 USD</td>
                     <td>
                       <small class="text-success mr-1">
                         <i class="fas fa-arrow-up"></i>
@@ -164,9 +169,9 @@
                 <table class="table table-striped table-valign-middle">
                   <thead>
                   <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Sales</th>
+                    <th>Docentes</th>
+                    <th>telefono</th>
+                    <th>Porcentajes de grado</th>
                     <th>More</th>
                   </tr>
                   </thead>
