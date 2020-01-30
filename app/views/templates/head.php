@@ -2,6 +2,7 @@
 $dashboard ;
 $controlador;
 $metodo;
+$gestion;
 ?>
 <title> <?php  echo NAME_SITE .' | '. $controlador; ?></title>
   <!-- Content Wrapper. Contains page content -->
