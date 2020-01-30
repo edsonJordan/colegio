@@ -1,5 +1,5 @@
 <?php 
-class Principalmodels{
+class Generalmodels{
      private $db;
     public function __construct()
     {

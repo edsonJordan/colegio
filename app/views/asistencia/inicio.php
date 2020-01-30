@@ -7,7 +7,8 @@
   require RUTAL_APP . '/views/templates/head.php'; 
 ?>
 
-  
+</div>                
+      </div>
 <?php
   require RUTAL_APP . '/views/templates/footer.php'; 
 ?>
