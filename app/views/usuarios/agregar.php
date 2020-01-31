@@ -21,14 +21,14 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->              
-              <form method="POST" action="<?php echo  RUTA_URL; ?>/usuarios/agregar" role="form">
+              <form method="POST" action="<?php echo  RUTA_URL; ?>/usuarios/agregar" onsubmit="return checkSubmit();" role="form">
                 <div class="card-body">
                 <div class="row">
-                  <div class="col-6">
-                    
-                  <label for="exampleInputEmail1"> Tipo de usuario</label>                    
-                    <select class="form-control select2 is-valid">
-                      <?php
+                  <div class="form-group col-6">                                      
+                  <label > Tipo de usuario</label>                    
+                    <select class="form-control select2" name="type_user" style="width: 100%;" >
+                    <option selected="selected" value="">Elegir opcion</option>
+                      <?php                      
                       foreach($datos['tipos'] as $tipos){
                         ?>
                          <option value="<?php echo $tipos->cod_type_user; ?>" ><?php echo $tipos->type; ?></option>
@@ -36,43 +36,40 @@
                       }                  
                       ?>                         
                         </select>
+                    
                   </div>
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Nombre</label>
-                    <input type="text" class="form-control is-valid" id="inputSuccess" placeholder="Enter ...">
+                    <input type="text" class="form-control is-valid" name="nombre" id="inputSuccess" placeholder="Enter ..."  >
                   </div>                   
                   <div class="col-6">
                   <label for="exampleInputEmail1"> Apellido paterno</label>
-                  <input type="text" class="form-control is-valid" id="inputSuccess" placeholder="Enter ...">                 
+                  <input type="text" class="form-control is-valid" name="ap_paterno" id="inputSuccess" placeholder="Enter ...">                 
                   </div>
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Apellido materno</label>
-                    <input type="text" class="form-control is-valid" id="inputSuccess" placeholder="Enter ...">
-                  </div> 
-                  
+                    <input type="text" class="form-control is-valid" name="ap_materno" id="inputSuccess" placeholder="Enter ...">
+                  </div>                   
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Telefono</label>
-                    <input type="text" class="form-control is-valid" id="inputSuccess" placeholder="Enter ...">
+                    <input type="text" class="form-control is-valid" name="telefono" id="inputSuccess" placeholder="Enter ...">
                   </div> 
-
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Correo</label>
-                    <input type="text" class="form-control is-valid" id="inputSuccess" placeholder="Enter ...">
+                    <input type="text" class="form-control is-valid" name="correo" id="inputSuccess" placeholder="Enter ...">
                   </div> 
-
-
                   <div class="col-6">
                   <label for="exampleInputEmail1"> contraseña</label>
-                  <input type="text" class="form-control is-valid" id="inputSuccess" placeholder="Enter ...">                 
+                  <input type="text" class="form-control is-valid"  placeholder="Enter ...">                 
                   </div>
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Repite contraseña</label>
-                    <input type="text" class="form-control is-valid" id="inputSuccess" placeholder="Enter ...">
+                    <input type="text" class="form-control is-valid" name="password" placeholder="Enter ...">
                   </div> 
                   <div style="padding-top: 20px;" class="col-12 d-flex justify-content-around ">
-                  <div  class="  custom-control custom-switch custom-switch-off-primary custom-switch-on-fuchsia">
-                      <input type="checkbox" class=" custom-control-input " id="customSwitch3">
-                      <label class="custom-control-label " for="customSwitch3">Genero</label>
+                  <div  class="  form-control custom-switch custom-switch-off-primary custom-switch-on-fuchsia">
+                      <input type="checkbox" class="form-control custom-control-input  " checked="checked" name="genero"  id="customSwitch3">                      
+                      <label class="custom-control-label " for="customSwitch3">femenino</label>
                     </div>              
                   </div>
                 </div>           
@@ -254,7 +251,20 @@
 
 
 
-
+        <script>
+   enviando = false; //Obligaremos a entrar el if en el primer submit
+    
+    function checkSubmit() {
+        if (!enviando) {
+    		enviando= true;
+    		return true;
+        } else {
+            //Si llega hasta aca significa que pulsaron 2 veces el boton submit
+            alert("El formulario ya se esta enviando");
+            return false;
+        }
+    }
+</script>
 
 
 </div>                

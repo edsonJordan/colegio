@@ -26,6 +26,8 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo RUTA_PLUGIN; ?>/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="<?php echo RUTA_PLUGIN; ?>/select2/js/select2.full.min.js"></script>
 <!-- ChartJS -->
 <script src="<?php echo RUTA_PLUGIN; ?>/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -50,5 +52,22 @@
 <script src="<?php echo RUTA_DIST; ?>/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo RUTA_DIST; ?>/js/demo.js"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
+    
+  
+
+
+  })
+</script>
+
 </body>
 </html>
