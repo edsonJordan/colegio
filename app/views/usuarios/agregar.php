@@ -20,19 +20,21 @@
                 <h3 class="card-title">Agregar usuarios</h3>
               </div>
               <!-- /.card-header -->
-              <!-- form start -->
-              <form role="form">
+              <!-- form start -->              
+              <form method="POST" action="<?php echo  RUTA_URL; ?>/usuarios/agregar" role="form">
                 <div class="card-body">
                 <div class="row">
                   <div class="col-6">
-                  <label for="exampleInputEmail1"> Tipo de usuario</label>
                     
-                    <select class="form-control is-valid">
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
+                  <label for="exampleInputEmail1"> Tipo de usuario</label>                    
+                    <select class="form-control select2 is-valid">
+                      <?php
+                      foreach($datos['tipos'] as $tipos){
+                        ?>
+                         <option value="<?php echo $tipos->cod_type_user; ?>" ><?php echo $tipos->type; ?></option>
+                      <?php
+                      }                  
+                      ?>                         
                         </select>
                   </div>
                   <div class="col-6">                    
@@ -67,7 +69,7 @@
                   <label for="exampleInputPassword1">Repite contraseña</label>
                     <input type="text" class="form-control is-valid" id="inputSuccess" placeholder="Enter ...">
                   </div> 
-                  <div class="col-12 d-flex justify-content-around ">
+                  <div style="padding-top: 20px;" class="col-12 d-flex justify-content-around ">
                   <div  class="  custom-control custom-switch custom-switch-off-primary custom-switch-on-fuchsia">
                       <input type="checkbox" class=" custom-control-input " id="customSwitch3">
                       <label class="custom-control-label " for="customSwitch3">Genero</label>
@@ -80,7 +82,7 @@
 
                 <div class=" card-footer col center  ">
                 <div  class="col text-center" >
-                <button type="submit" class="btn btn-primary col-4 ">Agregar </button>
+                <button type="submit" class="btn btn-success col-4 ">Agregar </button>
                 </div>
                   
                 </div>
@@ -97,7 +99,7 @@
             <!-- general form elements disabled -->
             <div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">General Elements</h3>
+                <h3 class="card-title">Agregar monitoreo de estudiantes</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -149,7 +151,6 @@
                       error</label>
                     <input type="text" class="form-control is-invalid" id="inputError" placeholder="Enter ...">
                   </div>
-
                   <div class="row">
                     <div class="col-sm-6">
                       <!-- checkbox -->
@@ -186,7 +187,6 @@
                       </div>
                     </div>
                   </div>
-
                   <div class="row">
                     <div class="col-sm-6">
                       <!-- select -->
@@ -247,152 +247,7 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-            <!-- general form elements disabled -->
-            <div class="card card-secondary">
-              <div class="card-header">
-                <h3 class="card-title">Custom Elements</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <form role="form">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <!-- checkbox -->
-                      <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                          <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1">
-                          <label for="customCheckbox1" class="custom-control-label">Custom Checkbox</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                          <input class="custom-control-input" type="checkbox" id="customCheckbox2" checked>
-                          <label for="customCheckbox2" class="custom-control-label">Custom Checkbox checked</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                          <input class="custom-control-input" type="checkbox" id="customCheckbox3" disabled>
-                          <label for="customCheckbox3" class="custom-control-label">Custom Checkbox disabled</label>
-                        </div>
-                      </div>
-                    </div> 
-                    <div class="col-sm-6">
-                      <!-- radio -->
-                      <div class="form-group">
-                        <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio">
-                          <label for="customRadio1" class="custom-control-label">Custom Radio</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" checked>
-                          <label for="customRadio2" class="custom-control-label">Custom Radio checked</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="customRadio3" disabled>
-                          <label for="customRadio3" class="custom-control-label">Custom Radio disabled</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <!-- select -->
-                      <div class="form-group">
-                        <label>Custom Select</label>
-                        <select class="custom-select">
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Custom Select Disabled</label>
-                        <select class="custom-select" disabled>
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <!-- Select multiple-->
-                      <div class="form-group">
-                        <label>Custom Select Multiple</label>
-                        <select multiple class="custom-select">
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label>Custom Select Multiple Disabled</label>
-                        <select multiple class="custom-select" disabled>
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                      <label class="custom-control-label" for="customSwitch1">Toggle this custom switch element</label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                      <input type="checkbox" class="custom-control-input" id="customSwitch3">
-                      <label class="custom-control-label" for="customSwitch3">Toggle this custom switch element with custom colors danger/success</label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" disabled id="customSwitch2">
-                      <label class="custom-control-label" for="customSwitch2">Disabled custom switch element</label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="customRange1">Custom range</label>
-                    <input type="range" class="custom-range" id="customRange1">
-                  </div>
-                  <div class="form-group">
-                    <label for="customRange1">Custom range (custom-range-danger)</label>
-                    <input type="range" class="custom-range custom-range-danger" id="customRange1">
-                  </div>
-                  <div class="form-group">
-                    <label for="customRange1">Custom range (custom-range-teal)</label>
-                    <input type="range" class="custom-range custom-range-teal" id="customRange1">
-                  </div>
-                  <div class="form-group">
-                    <!-- <label for="customFile">Custom File</label> -->
-
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="customFile">
-                      <label class="custom-file-label" for="customFile">Choose file</label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                  </div>
-                </form>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+            <!-- general form elements disabled -->          
           </div>
           <!--/.col (right) -->
         </div>

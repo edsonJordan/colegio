@@ -3,16 +3,19 @@ class Usuarios extends Controller{
     public function __construct()
     {
         $this->usuariosmodels = $this->modelo('Usuariomodels');
+        $this->typeusuariomodels = $this->modelo('Typeusermodels');
     }
     public function Index(){
         $tipe_user=$this->usuariosmodels->tipos_usuarios();
-     //   var_dump($tipe_user);
      $datos = ['tipos_user' => $tipe_user];
         $this->vista('/Usuarios/Inicio', $datos);
     }
     public function agregar(){
         
-        $this->vista('/Usuarios/Agregar');
+        $tipo_usuarios = $this->typeusuariomodels->tipo_user();
+        /* var_dump($tipo_usuarios); */
+        $datos= ['tipos' => $tipo_usuarios];
+        $this->vista('/Usuarios/Agregar', $datos);
     }
     
 }
