@@ -1,6 +1,3 @@
-<?php 
-?>
-
 <footer class="main-footer">
     <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">Sunqupacha</a>.</strong>
     All rights reserved.
@@ -26,6 +23,10 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo RUTA_PLUGIN; ?>/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="<?php echo RUTA_PLUGIN; ?>/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="<?php echo RUTA_PLUGIN; ?>/toastr/toastr.min.js"></script>
 <!-- Select2 -->
 <script src="<?php echo RUTA_PLUGIN; ?>/select2/js/select2.full.min.js"></script>
 <!-- ChartJS -->

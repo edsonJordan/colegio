@@ -18,15 +18,21 @@
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Agregar usuarios</h3>
+                <button type="button" class="btn btn-success swalDefaultSuccess">
+                  Launch Success Toast
+                </button>
               </div>
               <!-- /.card-header -->
               <!-- form start -->              
               <form method="POST" action="<?php echo  RUTA_URL; ?>/usuarios/agregar" onsubmit="return checkSubmit();" role="form">
                 <div class="card-body">
                 <div class="row">
-                  <div class="form-group col-6">                                      
+                  <div class="form-group col-6">   
+                    <?php
+                    
+                    ?>                                    
                   <label > Tipo de usuario</label>                    
-                    <select class="form-control select2" name="type_user" style="width: 100%;" >
+                    <select class="form-control select2" name="type_user" style="width: 100%;" required >
                     <option selected="selected" value="">Elegir opcion</option>
                       <?php                      
                       foreach($datos['tipos'] as $tipos){
@@ -35,42 +41,38 @@
                       <?php
                       }                  
                       ?>                         
-                        </select>
-                    
+                        </select>                    
                   </div>
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Nombre</label>
-                    <input type="text" class="form-control is-valid" name="nombre" id="inputSuccess" placeholder="Enter ..."  >
+                    <input type="text" class="form-control is-valid" name="nombre" id="inputSuccess" placeholder="Enter ..." required  >
                   </div>                   
                   <div class="col-6">
                   <label for="exampleInputEmail1"> Apellido paterno</label>
-                  <input type="text" class="form-control is-valid" name="ap_paterno" id="inputSuccess" placeholder="Enter ...">                 
+                  <input type="text" class="form-control is-valid" name="ap_paterno" id="inputSuccess" placeholder="Enter ..." required>                 
                   </div>
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Apellido materno</label>
-                    <input type="text" class="form-control is-valid" name="ap_materno" id="inputSuccess" placeholder="Enter ...">
+                    <input type="text" class="form-control is-valid" name="ap_materno" id="inputSuccess" placeholder="Enter ..." required>
                   </div>                   
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Telefono</label>
-                    <input type="text" class="form-control is-valid" name="telefono" id="inputSuccess" placeholder="Enter ...">
+                    <input type="text" class="form-control is-valid" name="telefono" id="inputSuccess" placeholder="Enter ..." required>
                   </div> 
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Correo</label>
-                    <input type="text" class="form-control is-valid" name="correo" id="inputSuccess" placeholder="Enter ...">
-                  </div> 
-                  <div class="col-6">
-                  <label for="exampleInputEmail1"> contraseña</label>
-                  <input type="text" class="form-control is-valid"  placeholder="Enter ...">                 
-                  </div>
+                    <input type="text" class="form-control is-valid" name="correo" id="inputSuccess" placeholder="Enter ..." required>
+                  </div>                   
                   <div class="col-6">                    
-                  <label for="exampleInputPassword1">Repite contraseña</label>
-                    <input type="text" class="form-control is-valid" name="password" placeholder="Enter ...">
+                  <label for="exampleInputPassword1">Contraseña</label>
+                    <input type="text" class="form-control is-valid" name="password" placeholder="Enter ..." required>
                   </div> 
                   <div style="padding-top: 20px;" class="col-12 d-flex justify-content-around ">
-                  <div  class="  form-control custom-switch custom-switch-off-primary custom-switch-on-fuchsia">
-                      <input type="checkbox" class="form-control custom-control-input  " checked="checked" name="genero"  id="customSwitch3">                      
+                  <div  class="  custom-control custom-switch custom-switch-off-primary custom-switch-on-fuchsia">
+                      <input type="checkbox" class="form-control custom-control-input"  name="genero"   id="customSwitch3">                      
                       <label class="custom-control-label " for="customSwitch3">femenino</label>
-                    </div>              
+                    </div>     
+                             
                   </div>
                 </div>           
                  
@@ -264,11 +266,34 @@
             return false;
         }
     }
+    
 </script>
-
-
 </div>                
       </div>
 <?php
   require RUTAL_APP . '/views/templates/footer.php'; 
 ?>
+<?php
+$error = isset($_GET['error']);
+var_dump($error);
+?>
+<script type="text/javascript">
+  $(function() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    
+      Toast.fire({
+        type: 'success',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+    
+    });
+
+
+  });
+
+</script>

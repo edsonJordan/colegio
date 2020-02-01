@@ -2,8 +2,7 @@
 class General extends Controller{
     public function __construct()
     {
-        $this->principalmodels = $this->modelo('Generalmodels');
-        $this->redi = $this->redireccion();
+        $this->principalmodels = $this->modelo('Generalmodels');     
     }
     public function Index(){
        

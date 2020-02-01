@@ -9,12 +9,6 @@ class Controller{
         $this->permiso = $permiso;
         return new $this->permiso;
     }
-    //seguridad de permiso
-    //cargamosm el archivo redireccion
-    public function redireccion(){
-        require_once RUTAL_APP.'/librerias/Redireccion.php';
-        return new Redireccion();
-    }
     //cargamos la gestion de un modelo
     public function modelo($modelo){
         require_once '../app/models/'. $modelo. '.php';
