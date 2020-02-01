@@ -26,11 +26,10 @@
                 <div class="card-body">
                 <div class="row">
                   <div class="form-group col-6">   
-                    <?php
-                    
+                    <?php                    
                     ?>                                    
                   <label > Tipo de usuario</label>                    
-                    <select class="form-control select2" name="type_user" style="width: 100%;" required >
+                    <select class="form-control select2 " data-dropdown-css-class="<?php if( isset($_GET['mensage']) == '20000' ){ echo   'select2-danger';  }      ?>" name="type_user" style="width: 100%;" required >
                     <option selected="selected" value="">Elegir opcion</option>
                       <?php                      
                       foreach($datos['tipos'] as $tipos){
@@ -47,7 +46,7 @@
                   </div>                   
                   <div class="col-6">
                   <label for="exampleInputEmail1"> Apellido paterno</label>
-                  <input type="text" class="form-control is-valid" name="ap_paterno" id="inputSuccess" placeholder="Enter ..." required>                 
+                  <input type="text" class="form-control is-valid" name="ap_paterno" id="inputSuccess" placeholder="Enter ..." >                 
                   </div>
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Apellido materno</label>
@@ -55,33 +54,29 @@
                   </div>                   
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Telefono</label>
-                    <input type="text" class="form-control is-valid" name="telefono" id="inputSuccess" placeholder="Enter ..." required>
+                    <input type="tel" class="form-control is-valid" name="telefono" pattern="[0-9]{9}"  id="inputSuccess" placeholder="Enter ..." required >
                   </div> 
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Correo</label>
-                    <input type="text" class="form-control is-valid" name="correo" id="inputSuccess" placeholder="Enter ..." required>
+                    <input type="email" class="form-control  <?php if( isset($_GET['mensage']) == '23000' ){ echo "is-invalid";  }      ?>" name="correo" id="inputSuccess" placeholder="Enter ..." required >
                   </div>                   
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Contraseña</label>
-                    <input type="text" class="form-control is-valid" name="password" placeholder="Enter ..." required>
+                    <input type="password" class="form-control is-valid" name="password" placeholder="Enter ..."  required>
                   </div> 
                   <div style="padding-top: 20px;" class="col-12 d-flex justify-content-around ">
                   <div  class="  custom-control custom-switch custom-switch-off-primary custom-switch-on-fuchsia">
                       <input type="checkbox" class="form-control custom-control-input"  name="genero"   id="customSwitch3">                      
-                      <label class="custom-control-label " for="customSwitch3">femenino</label>
-                    </div>     
-                             
+                      <label class="custom-control-label " for="customSwitch3" id="label" >Masculino</label>
+                    </div>                                  
                   </div>
-                </div>           
-                 
+                </div>                            
                 </div>
                 <!-- /.card-body -->
-
                 <div class=" card-footer col center  ">
                 <div  class="col text-center" >
                 <button type="submit" class="btn btn-success col-4 ">Agregar </button>
-                </div>
-                  
+                </div>                  
                 </div>
               </form>
             </div>
@@ -247,13 +242,10 @@
             <!-- general form elements disabled -->          
           </div>
           <!--/.col (right) -->
-        </div>
-
-
-
+        </div> 
         <script>
-   enviando = false; //Obligaremos a entrar el if en el primer submit
-    
+            
+   enviando = false; //Obligaremos a entrar el if en el primer submit    
     function checkSubmit() {
         if (!enviando) {
     		enviando= true;
@@ -263,33 +255,56 @@
             alert("El formulario ya se esta enviando");
             return false;
         }
-    }
-    
+    }    
 </script>
 </div>                
       </div>
 <?php
   require RUTAL_APP . '/views/templates/footer.php'; 
 ?>
+<!-- var url = < ?= //json_encode($_GET['error']) ?>; -->
 <script>
-  function jsfunction(codigo){
+    $( "#customSwitch3" ).click(function() {
+      var x = document.getElementById("label");
+  if (x.innerHTML === "Masculino") {
+    x.innerHTML = "Femenino";
+  } else {
+    x.innerHTML = "Masculino";
+  }
+  });
+      
+
+
+
+  function jsfunction(codigo){    
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 3000
+      timer: 4000
     });    
-    if (codigo = 23000){
-      $(function() {
+    switch(codigo){
+      case true:
+        $(function() {
+    toastr.success('Los datos fueron guardados satisfactoriamente')
+  });   
+  break;
+      case 23000:
+        $(function() {
     toastr.error('El correo ya existe en la base de datos')
   });
-    }  
-  }
-    
+    break;
+    case 20000:
+      $(function() {
+    toastr.error('Seleccione un tipo de usuario')
+  });
+  break;
+    }       
+  }    
   </script>
 <?php
-if( isset($_GET['error'])){
-  $error = $_GET['error'];      
+if( isset($_GET['mensage'])){
+  $error = $_GET['mensage'];      
   ?>
   <script> jsfunction(<?php echo $error; ?>);</script>
   <?php  

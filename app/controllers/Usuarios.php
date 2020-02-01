@@ -26,9 +26,7 @@ class Usuarios extends Controller{
             'password' => trim($_POST['password']),
             'genero' => trim($genero),
             'status' => "1"];                           
-            if($this->usuariosmodels->Agregaruser($datos)){
-                rediccionar('/usuarios/agregar');
-            }
+            $this->usuariosmodels->Agregaruser($datos);                            
         }
         $datos= ['tipos' => $tipo_usuarios];
         $this->vista('/Usuarios/Agregar', $datos);

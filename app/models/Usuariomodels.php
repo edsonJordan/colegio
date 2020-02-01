@@ -29,15 +29,17 @@ class Usuariomodels{
          $this->db->bind(':status', $datos['status']);         
         try{           
             $this->db->execute();
+            rediccionar('/usuarios/agregar?mensage=true');
+
         }catch(PDOException $e){
             $this->mensaje = $e->getMessage();
             $this->error = $e->getCode();                
             switch($this->error){
                 case 23000:                                     
-                    rediccionar('/usuarios/agregar?error=23000');
+                    rediccionar('/usuarios/agregar?mensage='.$this->error);
                 break;
                 case "HY000":
-                    $errrormensaje =  "Seleccione un tipo de usuario";
+                    rediccionar('/usuarios/agregar?mensage=20000');
                 break;
             }       
         }         
