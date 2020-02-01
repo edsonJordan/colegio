@@ -42,28 +42,29 @@
                   </div>
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Nombre</label>
-                    <input type="text" class="form-control is-valid" name="nombre" id="inputSuccess" placeholder="Enter ..." required  >
+                    <input type="text" class="form-control " name="nombre" id="inputSuccess" placeholder="Enter ..." required  >
                   </div>                   
                   <div class="col-6">
                   <label for="exampleInputEmail1"> Apellido paterno</label>
-                  <input type="text" class="form-control is-valid" name="ap_paterno" id="inputSuccess" placeholder="Enter ..." >                 
+                  <input type="text" class="form-control " name="ap_paterno" id="inputSuccess" placeholder="Enter ..." required>                 
                   </div>
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Apellido materno</label>
-                    <input type="text" class="form-control is-valid" name="ap_materno" id="inputSuccess" placeholder="Enter ..." required>
+                    <input type="text" class="form-control " name="ap_materno" id="inputSuccess" placeholder="Enter ..." required>
                   </div>                   
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Telefono</label>
-                    <input type="tel" class="form-control is-valid" name="telefono" pattern="[0-9]{9}"  id="inputSuccess" placeholder="Enter ..." required >
+                    <input type="tel" class="form-control " name="telefono" pattern="[0-9]{9}"  id="inputSuccess" placeholder="Enter ..." required >
                   </div> 
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Correo</label>
-                    <input type="email" class="form-control  <?php if( isset($_GET['mensage']) == '23000' ){ echo "is-invalid";  }      ?>" name="correo" id="inputSuccess" placeholder="Enter ..." required >
+                    <input type="email" class="form-control  <?php // if( isset($_GET['mensage']) == '23000' ){ echo "is-invalid";  }      ?>" name="correo" id="inputSuccess" placeholder="Enter ..." required >
                   </div>                   
                   <div class="col-6">                    
                   <label for="exampleInputPassword1">Contraseña</label>
-                    <input type="password" class="form-control is-valid" name="password" placeholder="Enter ..."  required>
+                    <input type="password" class="form-control " name="password" placeholder="Enter ..."  required>
                   </div> 
+                  <?php // var_dump($_GET['mensage']); ?>
                   <div style="padding-top: 20px;" class="col-12 d-flex justify-content-around ">
                   <div  class="  custom-control custom-switch custom-switch-off-primary custom-switch-on-fuchsia">
                       <input type="checkbox" class="form-control custom-control-input"  name="genero"   id="customSwitch3">                      
