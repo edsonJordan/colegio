@@ -18,9 +18,7 @@
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">Agregar usuarios</h3>
-                <button type="button" class="btn btn-success swalDefaultSuccess">
-                  Launch Success Toast
-                </button>
+               
               </div>
               <!-- /.card-header -->
               <!-- form start -->              
@@ -273,27 +271,28 @@
 <?php
   require RUTAL_APP . '/views/templates/footer.php'; 
 ?>
-<?php
-$error = isset($_GET['error']);
-var_dump($error);
-?>
-<script type="text/javascript">
-  $(function() {
+<script>
+  function jsfunction(codigo){
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
       timer: 3000
-    });
-
-    
-      Toast.fire({
-        type: 'success',
-        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-    
-    });
-
-
+    });    
+    if (codigo = 23000){
+      $(function() {
+    toastr.error('El correo ya existe en la base de datos')
   });
+    }  
+  }
+    
+  </script>
+<?php
+if( isset($_GET['error'])){
+  $error = $_GET['error'];      
+  ?>
+  <script> jsfunction(<?php echo $error; ?>);</script>
+  <?php  
+}
+?>
 
-</script>

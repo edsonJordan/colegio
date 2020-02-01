@@ -1,8 +1,17 @@
 <?php 
 class Controller{
+    protected $respuesta; 
     protected $permiso;
     public function __construct()
     {
+    }
+    public function imprimir($codigo)
+    {
+
+        if($codigo == 2300){
+          $respuesta = 'felfewkmfewmkfewfwefwe';
+        }
+        return $respuesta;
     }
     // gestion de rol
     public function getpermiso($permiso){

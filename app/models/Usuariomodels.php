@@ -6,6 +6,7 @@ class Usuariomodels{
     {
         $this->db = new Base;        
     }
+    
  
     public function tipos_usuarios()
     {
@@ -33,7 +34,7 @@ class Usuariomodels{
             $this->error = $e->getCode();                
             switch($this->error){
                 case 23000:                                     
-                    rediccionar('/usuarios/agregar?error=2300');
+                    rediccionar('/usuarios/agregar?error=23000');
                 break;
                 case "HY000":
                     $errrormensaje =  "Seleccione un tipo de usuario";
