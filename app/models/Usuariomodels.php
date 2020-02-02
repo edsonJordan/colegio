@@ -13,8 +13,7 @@ class Usuariomodels{
         $this->db->query("SELECT t.type, COUNT(u.cod_type_user) as 'cantidad' FROM tb_user u, tb_type_user t WHERE t.cod_type_user = u.cod_type_user GROUP BY t.type, t.cod_type_user");
         return $this->db->registros_array();    
     }
-    public function Agregaruser($datos)
-    {
+    public function Agregaruser($datos){
         $this->db->query("INSERT INTO tb_user
         (cod_type_user, name, ap_materno, ap_paterno, genero, pass, phone, email, status)
          VALUES(:cod_type_user, :name, :ap_materno, :ap_paterno, :genero, :pass, :phone, :email, :status)");
@@ -42,7 +41,13 @@ class Usuariomodels{
                 break;
             }       
         }         
-    }    
+    }   
+    public function setfamiliar($codigo)
+    {
+        $this->db->query("SELECT u.cod_user, u.name, u.ap_paterno, u.ap_materno from tb_user u, tb_type_user t WHERE u.cod_type_user = t.cod_type_user and t.type= '$codigo' ");
+        return $this->db->registros();
+    }
+    
 }
 ?>
 

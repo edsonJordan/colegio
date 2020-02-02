@@ -12,6 +12,8 @@ class Usuarios extends Controller{
     }
     public function agregar(){        
         $tipo_usuarios = $this->typeusuariomodels->tipo_user();
+        $padre = $this->usuariosmodels->setfamiliar('padre');
+        $alumno = $this->usuariosmodels->setfamiliar('alumno');         
         if($_SERVER['REQUEST_METHOD'] == 'POST'){            
             $genero=empty($_POST['genero']);        
             if($genero == false){
@@ -28,7 +30,7 @@ class Usuarios extends Controller{
             'status' => "1"];                           
             $this->usuariosmodels->Agregaruser($datos);                            
         }
-        $datos= ['tipos' => $tipo_usuarios];
+        $datos= ['tipos' => $tipo_usuarios, 'padres' => $padre, 'alumnos' => $alumno];
         $this->vista('/Usuarios/Agregar', $datos);
     }
     

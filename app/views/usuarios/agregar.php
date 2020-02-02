@@ -111,26 +111,26 @@
                       <div class="form-group">
                   <label>Estudiantes</label>
                   <select class="select2" multiple="multiple" data-placeholder="Seleccion estudiante(s)" style="width: 100%;" required>
-                    <option>Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                  <?php                      
+                      foreach($datos['alumnos'] as $alumnos){
+                        ?>
+                         <option value="<?php echo $alumnos->cod_user; ?>" ><?php echo $alumnos->name." ".$alumnos->ap_paterno." ".$alumnos->ap_materno; ?></option>
+                      <?php
+                      }                  
+                      ?>  
                   </select>
                 </div>               
                   </div>
                   <div class="col-12">
                       <!-- text input -->
                       <div class="form-group">
-                  <label>Padre de familia</label>
+                  <label>Padre o tutor</label>
                   <select class="form-control select2 "  style="width: 100%;"  required >
                     <option selected="selected" value="">Elegir opcion</option>
                       <?php                      
-                      foreach($datos['tipos'] as $tipos){
+                      foreach($datos['padres'] as $padres){
                         ?>
-                         <option value="<?php echo $tipos->cod_type_user; ?>" ><?php echo $tipos->type; ?></option>
+                         <option value="<?php echo $padres->cod_user; ?>" ><?php echo $padres->name." ".$padres->ap_paterno." ".$padres->ap_materno; ?></option>
                       <?php
                       }                  
                       ?>                         
