@@ -10,14 +10,20 @@
     <!-- Main content -->
     <section class="content">
     <?php         
-    $tipo_color = ['bg-primary', 'bg-success', 'bg-warning', 'bg-danger', 'bg-info', 'bg-indigo'];               
+    $tipo_color = ['bg-primary', 'bg-success', 'bg-warning', 'bg-danger', 'bg-info', 'bg-indigo', 'bg-black'];               
     ?>
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <?php
+ /*          var_dump($datos['tipos_user']);
+          var_dump($tipo_color);           
+            for($i=0; $i<count($datos['tipos_user']) ; $i++ ){              
+                echo $datos['tipos_user'][$i]['type'].$tipo_color[$i]."<br>";              
+                
+            }   */        
           foreach($datos['tipos_user'] as $key => $value) {
-        /*     echo  $value['type']." Cantidad =". $value['cantidad'] . " - " . $tipo_color[$key] . "<br>"; */
+          //  echo  $value['type']." Cantidad =". $value['cantidad'] . " - " . $tipo_color[$key] . "<br>";
         ?>
           <div class="col-lg-3 col-6">
             <!-- small box -->

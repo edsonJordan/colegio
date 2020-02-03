@@ -90,8 +90,6 @@
               </form>
             </div>
             <!-- /.card -->
-            <!-- Input addon -->          
-            <!-- /.card -->
             <!-- Horizontal Form -->
           </div>
           <!--/.col (left) -->
@@ -104,13 +102,13 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <form role="form">
+              <form method="POST" action="<?php echo  RUTA_URL; ?>/usuarios/monitoreo" onsubmit="return checkSubmit();" role="form">
                   <div class="row">
                     <div class="col-12">
                       <!-- text input -->
                       <div class="form-group">
                   <label>Estudiantes</label>
-                  <select class="select2" multiple="multiple" data-placeholder="Seleccion estudiante(s)" style="width: 100%;" required>
+                  <select class="select2" name="estudiantes[]" multiple="multiple" data-placeholder="Seleccion estudiante(s)" style="width: 100%;" required>
                   <?php                      
                       foreach($datos['alumnos'] as $alumnos){
                         ?>
@@ -125,7 +123,7 @@
                       <!-- text input -->
                       <div class="form-group">
                   <label>Padre o tutor</label>
-                  <select class="form-control select2 "  style="width: 100%;"  required >
+                  <select class="form-control select2 "  name="familiar" style="width: 100%;"  required >
                     <option selected="selected" value="">Elegir opcion</option>
                       <?php                      
                       foreach($datos['padres'] as $padres){
