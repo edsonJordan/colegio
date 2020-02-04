@@ -1,6 +1,7 @@
 <?php 
 class Usuarios extends Controller{
     protected $asd;
+    protected $extranjero;
     public function __construct()
     {
         $this->usuariosmodels = $this->modelo('Usuariomodels');
@@ -42,7 +43,10 @@ class Usuarios extends Controller{
     public function monitoreo()
     {
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){                
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){    
+            
+
+
             $values = $_POST['estudiantes'];        
             echo "padre de familia";
             var_dump($_POST['familiar']);
@@ -63,18 +67,25 @@ class Usuarios extends Controller{
                 echo "values";
                 var_dump($values);
                 echo "sacando privilegios";
-                var_dump($this->asd);            
-            //aca sacamos las diferencias entre los que tiene y los que tendra 
+                var_dump($this->asd);                                                    
+                        //Con valor strict a false
+                                                
+                        $indice = array_search($privilegio[0]['privilege'],$values,true);
+                        if($indice){
+                            echo "Si hay";
+                            $this->extranjero = "1";
+                        }else{
+                            echo "No hay";
+                            $this->extranjero = "0";
+                        }
+                        var_dump($this->extranjero);
+
+
+                //aca sacamos las diferencias entre los que tiene y los que tendra 
             $valor1 = array_diff($values, $this->asd);
-            $valor2 = array_diff($this->asd, $values);
-            echo "sacando diferencia lo que hay de valor y no  hay en privilegio";
-            var_dump($valor1);
-            echo "sacando diferencia lo que hay de privilegio y no  hay en valor";
-            var_dump($valor2);
+            $valor2 = array_diff($this->asd, $values);  
             //aca combinamos las diferencias
-            $combinacion = array_merge($valor1, $valor2);        
-            echo "combinacion";
-            var_dump($combinacion);
+            $combinacion = array_merge($valor1, $valor2);                    
             //aca mostramos el codigo de los prospectos y el codigo del familiar al cual sera asignada los privilegios
             for($i=0; $i<count($combinacion); $i++){
                // echo "insert into  tb_privilege  (cod_user, privilege) value  (:".$combinacion[$i].", :".$_POST['familiar'].")"."<br>";
