@@ -8,7 +8,6 @@
   require RUTAL_APP . '/views/templates/header.php'; 
   require RUTAL_APP . '/views/templates/head.php'; 
 ?>
-
 <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -209,6 +208,12 @@
     toastr.error('Seleccione un tipo de usuario')
   });
   break;
+  case 30000:
+      $(function() {
+    toastr.error('Error alumno(s) seleccionados ya estan en monitoreo por el padre seleecionado')
+  });
+  break;
+
     }       
   }    
   </script>
