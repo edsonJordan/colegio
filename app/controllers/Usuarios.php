@@ -2,6 +2,7 @@
 class Usuarios extends Controller{
     protected $asd;
     protected $extranjero;
+    protected $privilegios; 
     public function __construct()
     {
         $this->usuariosmodels = $this->modelo('Usuariomodels');
@@ -43,15 +44,12 @@ class Usuarios extends Controller{
     public function monitoreo()
     {
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){    
-            
-
-
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){                
             $values = $_POST['estudiantes'];        
             echo "padre de familia";
-            var_dump($_POST['familiar']);
+            //var_dump($_POST['familiar']);
             $privilegio = $this->privilegemodels->setmonitoreo($_POST['familiar']);      
-            var_dump($privilegio);
+            //var_dump($privilegio);
             //var_dump($privilegio, $values);            
             //hacemos un switch case para ver si el padre de familia al cual se le va dar privilegios 
             //ya  tiene privilegios sobre un alumno o todavia no tiene  
@@ -68,43 +66,76 @@ class Usuarios extends Controller{
                 var_dump($values);
                 echo "sacando privilegios";
                 var_dump($this->asd);                                                    
-                        //Con valor strict a false
-                                                
-                        $indice = array_search($privilegio[0]['privilege'],$values,true);
-                        if($indice){
-                            echo "Si hay";
-                            $this->extranjero = "1";
-                        }else{
-                            echo "No hay";
-                            $this->extranjero = "0";
+
+                       // $prueba = array_diff_key($this->asd, $values);
+                        //var_dump($prueba);
+                        foreach ($this->asd as $value) {
+                            if (in_array($value, $values)) {
+                               //
+                                $this->extranjero = true;
+                                break;
+                            } 
                         }
-                        var_dump($this->extranjero);
+                      
+                switch($this->extranjero){
+                    case true:
+                        echo "Si hay";
+                        //aca sacamos las diferencias entre los que tiene y los que tendra 
+                    //if(count(&))      
+                        $valor1 = array_diff($values, $this->asd);
 
+                        echo "valor 1";
+                        var_dump($valor1);
+                            $valor2 = array_diff($this->asd, $values);  
+                            //aca combinamos las diferencias
+                            $combinacion = array_merge($valor1, $valor2);
+                            /* 
+              for($i= 0; $i< count($valor1); $i++){
+                  $this->privilegios[$i]=$combinacion[$i];
+              } */       
+                            foreach($valor1 as $indice){
+                                $this->privilegios[]=$indice;
+                            }
+                        echo "privilegios ordenados";
+                        var_dump($this->privilegios);
 
-                //aca sacamos las diferencias entre los que tiene y los que tendra 
-            $valor1 = array_diff($values, $this->asd);
-            $valor2 = array_diff($this->asd, $values);  
-            //aca combinamos las diferencias
-            $combinacion = array_merge($valor1, $valor2);                    
-            //aca mostramos el codigo de los prospectos y el codigo del familiar al cual sera asignada los privilegios
-            for($i=0; $i<count($combinacion); $i++){
-               // echo "insert into  tb_privilege  (cod_user, privilege) value  (:".$combinacion[$i].", :".$_POST['familiar'].")"."<br>";
-                //echo "el alumno es: ".$combinacion[$i]." y el codigo del familiar es: ".$_POST['familiar']."<br>";    
-                $datos[$i]['cod_user'] = $combinacion[$i];
-                $datos[$i]['cod_padre'] = $_POST['familiar'];                
-            }      
-            
-
-            for($d = 0; $d<count($datos); $d++){
-                //echo $datos[$d]['cod_user']." docente =".$datos[$d]['cod_padre']."<br>";
-                $datoquery[$d] = ['usuarios' => $datos[$d]['cod_user'], 'padre'=> $datos[$d]['cod_padre']];
-                //echo $datoquery[$d]['usuarios'].$datoquery[$d]['padre']."<br>";
-                $query[]= $datos[$d]['cod_user'].", ".$datos[$d]['cod_padre'];
-                $asd =  implode("'), ('", $query) ;
-            }
-            var_dump($asd);
-            
-                        
+                        for($d = 0; $d<count($this->privilegios); $d++){
+                            //echo $datos[$d]['cod_user']." docente =".$datos[$d]['cod_padre']."<br>";
+                            //$datoquery[$d] = ['usuarios' => $datos[$d]['cod_user'], 'padre'=> $datos[$d]['cod_padre']];
+                            //echo $datoquery[$d]['usuarios'].$datoquery[$d]['padre']."<br>";
+                            $query[]= $this->privilegios[$d].", ".$_POST['familiar'];
+                            $asd =  implode("'), ('", $query) ;
+                        }
+                        var_dump($asd);
+              //aca mostramos el codigo de los prospectos y el codigo del familiar al cual sera asignada los privilegios
+             /*  for($i=0; $i<count($combinacion); $i++){
+                 // echo "insert into  tb_privilege  (cod_user, privilege) value  (:".$combinacion[$i].", :".$_POST['familiar'].")"."<br>";
+                  //echo "el alumno es: ".$combinacion[$i]." y el codigo del familiar es: ".$_POST['familiar']."<br>";    
+                  $datos[$i]['cod_user'] = $combinacion[$i];
+                  $datos[$i]['cod_padre'] = $_POST['familiar'];                
+              }   */                         
+            /*   var_dump($asd); */
+                    break;
+                    case null:
+                        echo "No hay";
+                        //aca sacamos las diferencias entre los que tiene y los que tendra                          
+     //aca mostramos el codigo de los prospectos y el codigo del familiar al cual sera asignada los privilegios
+     for($i=0; $i<count($values); $i++){
+        // echo "insert into  tb_privilege  (cod_user, privilege) value  (:".$combinacion[$i].", :".$_POST['familiar'].")"."<br>";
+         //echo "el alumno es: ".$combinacion[$i]." y el codigo del familiar es: ".$_POST['familiar']."<br>";    
+         $datos[$i]['cod_user'] = $values[$i];
+         $datos[$i]['cod_padre'] = $_POST['familiar'];                
+     }                  
+     for($d = 0; $d<count($datos); $d++){        
+         $datoquery[$d] = ['usuarios' => $datos[$d]['cod_user'], 'padre'=> $datos[$d]['cod_padre']];         
+         $query[]= $datos[$d]['cod_user'].", ".$datos[$d]['cod_padre'];
+         $asd =  implode("'), ('", $query) ;
+     }
+     var_dump($asd);                 
+                    break; 
+                    default:
+                        echo "Ocurrio un error mey dey mey dey";                
+                }                                                            
                 break;
                 // caso de que no contenga privilegios sobre ningun alumno se procedera a ejecutar el query
                 case false:
