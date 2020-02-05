@@ -58,9 +58,7 @@ class Usuarios extends Controller{
                 for($t=0; $t<count($privilegio); $t++) {                        
                     $this->asd[$t]= $privilegio[$t]['privilege'];
                 }               
-            /*     echo "estos son los privilegios del padre";
-                */         
-                        foreach ($this->asd as $value) {
+                    foreach ($this->asd as $value) {
                             if (in_array($value, $values)) {
                                 $this->extranjero = true;
                                 break;
@@ -121,6 +119,11 @@ class Usuarios extends Controller{
             }                                    
         }    
         $this->vista('/Usuarios/Monitoreo');
+    }
+    public function ver()
+    {
+        
+        $this->vista('/Usuarios/Ver');
     }
 
 

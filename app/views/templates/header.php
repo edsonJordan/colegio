@@ -392,7 +392,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
+                <a href="<?php echo RUTA_URL; ?>/usuarios/ver" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ver usuarios</p>
                 </a>
