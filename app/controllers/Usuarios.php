@@ -44,16 +44,13 @@ class Usuarios extends Controller{
     }
     public function monitoreo()
     {
-
         if($_SERVER['REQUEST_METHOD'] == 'POST'){                
             $values = $_POST['estudiantes'];                                
-            $privilegio = $this->privilegemodels->setmonitoreo($_POST['familiar']);      
-            //var_dump($privilegio);
-            //var_dump($privilegio, $values);            
+            $privilegio = $this->privilegemodels->setmonitoreo($_POST['familiar']);                       
             //hacemos un switch case para ver si el padre de familia al cual se le va dar privilegios 
             //ya  tiene privilegios sobre un alumno o todavia no tiene  
             switch($privilegio){
-                //si ya tiene privilegios entoncs filtra prospectos de privilegios con privilegios antigos
+                //si ya tiene privilegios entoncs filtra prospectos de privilegios con privilegios antiguos
                 // y de este modo solo se agregen privilegios nuevos y no se repitan los que ya tienen
                 case true:
                 //aca llenamos un  array para poder sacar las diferencias entre los privilegios que ya tiene
@@ -62,45 +59,32 @@ class Usuarios extends Controller{
                     $this->asd[$t]= $privilegio[$t]['privilege'];
                 }               
             /*     echo "estos son los privilegios del padre";
-                var_dump($this->asd);
-                echo "values";
-                var_dump($values);     */                                                                         
+                */         
                         foreach ($this->asd as $value) {
                             if (in_array($value, $values)) {
                                 $this->extranjero = true;
                                 break;
                             } 
-                        }
-                        var_dump($this->extranjero);
-                                                              
+                        }                                                                                     
                 switch($this->extranjero){
-                    case true:                                                                   
-                        echo "Si hay y estos son los privilegios del padre";
-                        var_dump($this->asd);                                                  
-                        echo "estos son valores";
-                        var_dump($values);
-                        echo "values";
+                    case true:                                               
+                                //Si hay privilegio repetido en los valores        
                                 $valor1 = array_diff($values, $this->asd);                                
-                                //$valor1 = array_diff($this->asd, $values); 
-                                echo "valor 1";
-                                var_dump($valor1);                                    
+                                //$valor1 = array_diff($this->asd, $values);                                 
                                     //aca combinamos las diferencias
                                     //$combinacion = array_merge($valor1, $valor2);
                                     foreach($valor1 as $indice){
                                         $this->privilegios[]=$indice;
-                                    }
-                                echo "privilegios ordenados";
-                                var_dump($this->privilegios);
+                                    }                                                                
                                 for($d = 0; $d<count($this->privilegios); $d++){                  
                                     $query[]= $_POST['familiar']."','".$this->privilegios[$d];
                                     $asd =  implode("'), ('", $query) ;                                    
                                 }                      
                                 // tiene solo una parte de los provilegios parecidos a los valores seleccionados    
                                 //var_dump($this->privilegios);
-                                if($this->privilegios){
-                                    echo " si tiene privilegios y no es nulo";
+                                if($this->privilegios){                                    
                                     $p = "('".$asd."')";
-                                    print_r($p);
+                                    $this->privilegemodels->agregarmonitoreo($p);
                                 }
                                 else{
                                     //tiene todos los privilegios parecidos a los valores seleccionados
@@ -108,33 +92,31 @@ class Usuarios extends Controller{
                                 }
                     break;
                     case null:                        
-                                //no hay ningun privilegio repetido en los valores
-                                echo "No hay";
+                                //no hay ningun privilegio repetido en los valores                            
                                 $valor1 = array_diff($values, $this->asd);
                                 foreach($valor1 as $indice){
                                     $this->privilegios[]=$indice;
                                 }
                                 var_dump($this->privilegios);
                                 for($d = 0; $d<count($this->privilegios); $d++){                  
-                                    $query[]= $this->privilegios[$d].", ".$_POST['familiar'];
+                                    $query[]= $this->privilegios[$d]."','".$_POST['familiar'];
                                     $this->nothingprivilege =  implode("'), ('", $query) ;
                                 }
-                            var_dump($this->nothingprivilege);
-                            
+                                $final = "('".$this->nothingprivilege."')";
+                                $this->privilegemodels->agregarmonitoreo($final);
                     break; 
                     default:
                         echo "Ocurrio un error mey dey mey dey";                
                 }                                                            
                 break;
                 // caso de que no contenga privilegios sobre ningun alumno se procedera a ejecutar el query
-                case false:
-                    
+                case false:                    
                     for($d = 0; $d<count($values); $d++){                  
                         $query[]= $_POST['familiar']."','".$values[$d];
                         $this->nothingprivilege =  implode("'), ('", $query);                                                                    
                     }
-                var_dump($this->nothingprivilege);
-                    
+                    $final = "('".$this->nothingprivilege."')";
+                $this->privilegemodels->agregarmonitoreo($final);                
                 break;
             }                                    
         }    
