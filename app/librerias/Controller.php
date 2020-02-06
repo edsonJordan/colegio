@@ -2,6 +2,7 @@
 class Controller{
     protected $respuesta; 
     protected $permiso;
+    protected $url;
     public function __construct()
     {
     }
@@ -12,6 +13,16 @@ class Controller{
           $respuesta = 'felfewkmfewmkfewfwefwe';
         }
         return $respuesta;
+    }
+    public function treeview($controlador, $codigo)
+    {
+        if($controlador == $codigo){
+            echo "menu-open";} 
+    }
+    public function nav_item( $controlador, $codigo)
+    {
+        if($controlador == $codigo){
+             echo "active";} 
     }
     // gestion de rol
     public function getpermiso($permiso){

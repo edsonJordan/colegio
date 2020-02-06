@@ -121,9 +121,12 @@ class Usuarios extends Controller{
         $this->vista('/Usuarios/Monitoreo');
     }
     public function ver()
-    {
-        
+    {        
         $this->vista('/Usuarios/Ver');
+    }
+    public function exportar()
+    {
+        $this->vista('/Usuarios/Exportar');
     }
 
 

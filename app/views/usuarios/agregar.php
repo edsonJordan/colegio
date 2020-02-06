@@ -3,8 +3,7 @@
   $url = explode('/', $vista);
   $controlador = $url[1];
   $metodo = $url[2];
-  $usuarios= true;
-  $agregarusuarios  = true;
+  
   require RUTAL_APP . '/views/templates/header.php'; 
   require RUTAL_APP . '/views/templates/head.php'; 
 ?>
@@ -111,7 +110,7 @@
                   <?php                      
                       foreach($datos['alumnos'] as $alumnos){
                         ?>
-                         <option value="<?php echo $alumnos->cod_user; ?>" ><?php echo $alumnos->name." ".$alumnos->ap_paterno." ".$alumnos->ap_materno.$alumnos->cod_user; ?></option>
+                         <option value="<?php echo $alumnos->cod_user; ?>" ><?php echo $alumnos->name." ".$alumnos->ap_paterno." ".$alumnos->ap_materno; ?></option>
                       <?php
                       }                  
                       ?>  
@@ -127,7 +126,7 @@
                       <?php                      
                       foreach($datos['padres'] as $padres){
                         ?>
-                         <option value="<?php echo $padres->cod_user; ?>" ><?php echo $padres->name." ".$padres->ap_paterno." ".$padres->ap_materno." ".$padres->cod_user; ?></option>
+                         <option value="<?php echo $padres->cod_user; ?>" ><?php echo $padres->name." ".$padres->ap_paterno." ".$padres->ap_materno; ?></option>
                       <?php
                       }                  
                       ?>                         

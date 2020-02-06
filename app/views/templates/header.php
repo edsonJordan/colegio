@@ -376,8 +376,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview <?php if( !empty($usuarios) and $usuarios){echo 'menu-open';} ?>">
-            <a href="#" class="nav-link <?php if( !empty($usuarios) and $usuarios){echo 'active';} ?>">              
+          <li class="nav-item has-treeview <?php  $this->treeview($url[1], "Usuarios");?>">
+            <a href="#" class="nav-link <?php $this->nav_item($url[1], "Usuarios"); ?>">              
               <i class="nav-icon ion ion-person"></i>
               <p>
                 Usuarios
@@ -386,21 +386,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo RUTA_URL; ?>/usuarios/agregar" class="nav-link <?php   if( !empty($agregarusuarios) and $agregarusuarios){echo 'active';} ?> ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Agregar usuarios</p>
+                <a href="<?php echo RUTA_URL; ?>/usuarios/agregar" class="nav-link <?php  $this->nav_item($url[1]."/".$url[2], ("Usuarios/Agregar"));  ?> ?>">
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>usuarios y monitoreo </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo RUTA_URL; ?>/usuarios/ver" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ver usuarios</p>
+                <a href="<?php echo RUTA_URL; ?>/usuarios/ver" class="nav-link <?php $this->nav_item($url[1]."/".$url[2], ("Usuarios/Ver")); ?>">
+                  <i class="fas fa-eye nav-icon"></i>                  
+                  <p>usuarios y monitoreo</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/jsgrid.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Asignar roles</p>
+                <a href="<?php echo RUTA_URL; ?>/usuarios/exportar" class="nav-link <?php $this->nav_item($url[1]."/".$url[2], ("Usuarios/Exportar")); ?>" >
+                  <i class="fas fa-download nav-icon"></i>
+                  <p>Exportar</p>
                 </a>
               </li>
             </ul>

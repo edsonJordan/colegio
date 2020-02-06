@@ -236,17 +236,9 @@
             <!-- /.card -->
           </div>
         </div>   
-
-
-
-
         <!-- TERMINA EL ROW -->     
-
         </div>                
-      </div>
-        
-        
-        
+      </div>                        
         <!-- /.row -->
 
 <?php
