@@ -8,12 +8,12 @@ class Controller{
     }
     public function imprimir($codigo)
     {
-
         if($codigo == 2300){
           $respuesta = 'felfewkmfewmkfewfwefwe';
         }
         return $respuesta;
     }
+
     public function treeview($controlador, $codigo)
     {
         if($controlador == $codigo){
@@ -44,12 +44,32 @@ class Controller{
          }else{
             //cargamos la vista
          echo "no existe la vista";
-
+        }              
+    }
+    public function script($public = []){   
+        for($i=0; $i<count($public); $i++){
+            if(file_exists('../public/'.$public[$i])){
+                echo "<script src=".'../public/'.$public[$i]."></script>";
+            }
+            else{
+                echo "<p style='float:right;color:red;'>"."hey wey no existe el archivo(s)  .$public[$i]"."</p><br>";    
+            }
         }
-      
-        
+    }
+    public function link($public = []){          
+        echo "<link  rel='stylesheet' href="."https:code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css>";
+        echo "<link  rel='stylesheet' href="."https:fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700>";
+        for($i=0; $i<count($public); $i++){
+            if(file_exists('../public/'.$public[$i])){                
+                echo "<link  rel='stylesheet' href=".'../public/'.$public[$i].">";
+            }
+            else{
+                echo "<p style='float:right;color:red;'>"."hey wey no existe el archivo(s)  .$public[$i]"."</p><br>";
+    
+            }
+        }
     }
 
 
-
+    
 }

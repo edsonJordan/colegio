@@ -5,7 +5,6 @@
       <b>Version</b> 2.0.2
     </div>
   </footer>
-
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -23,6 +22,9 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo RUTA_PLUGIN; ?>/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="<?php echo RUTA_PLUGIN; ?>/datatables/jquery.dataTables.js"></script>
+<script src="<?php echo RUTA_PLUGIN ?>/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo RUTA_PLUGIN; ?>/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
@@ -61,14 +63,21 @@
     //Initialize Select2 Elements
     $('.select2bs4').select2({
       theme: 'bootstrap4'
-    })
-
-    
-  
-
-
+    })      
   })
 </script>
-
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
 </body>
 </html>

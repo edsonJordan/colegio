@@ -6,6 +6,11 @@ class Usuariomodels{
     {
         $this->db = new Base;        
     }     
+    public function getusuarios()
+    {
+        $this->db->query("SELECT u.cod_user, t.type, u.name, u.ap_materno, u.ap_paterno, u.phone, u.status FROM tb_user u, tb_type_user t WHERE u.cod_type_user=t.cod_type_user");
+        return $this->db->registros();
+    }
     public function tipos_usuarios()
     {
         $this->db->query("SELECT t.type, COUNT(u.cod_type_user) as 'cantidad' FROM tb_user u, tb_type_user t WHERE t.cod_type_user = u.cod_type_user GROUP BY t.type, t.cod_type_user");
