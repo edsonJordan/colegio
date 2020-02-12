@@ -126,6 +126,7 @@ class Usuarios extends Controller{
         $datos =['usuarios' => $usuarios];
         $this->vista('/Usuarios/Visualizar', $datos);        
     }
+    
     public function exportar()
     {
         $this->vista('/Usuarios/Exportar');
