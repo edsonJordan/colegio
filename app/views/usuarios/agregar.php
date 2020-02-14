@@ -109,7 +109,7 @@
                   <?php                      
                       foreach($datos['alumnos'] as $alumnos){
                         ?>
-                         <option value="<?php echo $alumnos->cod_user; ?>" ><?php echo $alumnos->name." ".$alumnos->ap_paterno." ".$alumnos->ap_materno; ?></option>
+                         <option value="<?php echo $alumnos->cod_user; ?>" ><?php echo $alumnos->cod_user." ".$alumnos->name." ".$alumnos->ap_paterno." ".$alumnos->ap_materno; ?></option>
                       <?php
                       }                  
                       ?>  
@@ -119,13 +119,13 @@
                   <div class="col-12">
                       <!-- text input -->
                       <div class="form-group">
-                  <label>Padre o tutor</label>
+                  <label>Padre o tutor</label>                  
                   <select class="form-control select2 "  name="familiar" style="width: 100%;"  required >
                     <option selected="selected" value="">Elegir opcion</option>
                       <?php                      
                       foreach($datos['padres'] as $padres){
                         ?>
-                         <option value="<?php echo $padres->cod_user; ?>" ><?php echo $padres->name." ".$padres->ap_paterno." ".$padres->ap_materno; ?></option>
+                         <option value="<?php echo $padres->cod_user; ?>" ><?php echo $padres->cod_user." ".$padres->name." ".$padres->ap_paterno." ".$padres->ap_materno; ?></option>
                       <?php
                       }                  
                       ?>                         

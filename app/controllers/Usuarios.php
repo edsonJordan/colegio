@@ -46,7 +46,8 @@ class Usuarios extends Controller{
     {
         if($_SERVER['REQUEST_METHOD'] == 'POST'){                
             $values = $_POST['estudiantes'];                                
-            $privilegio = $this->privilegemodels->setmonitoreo($_POST['familiar']);                       
+            $privilegio = $this->privilegemodels->setmonitoreo($_POST['familiar']);    
+            var_dump($privilegio);
             //hacemos un switch case para ver si el padre de familia al cual se le va dar privilegios 
             //ya  tiene privilegios sobre un alumno o todavia no tiene  
             switch($privilegio){
@@ -82,25 +83,27 @@ class Usuarios extends Controller{
                                 //var_dump($this->privilegios);
                                 if($this->privilegios){                                    
                                     $p = "('".$asd."')";
-                                    $this->privilegemodels->agregarmonitoreo($p);
+                                    $this->privilegemodels->agregarmonitoreo($p);                               
                                 }
                                 else{
                                     //tiene todos los privilegios parecidos a los valores seleccionados
                                     rediccionar('/usuarios/agregar?mensage=30000');                            
                                 }
                     break;
-                    case null:                        
+                    case null:  
+                                                      
                                 //no hay ningun privilegio repetido en los valores                            
                                 $valor1 = array_diff($values, $this->asd);
                                 foreach($valor1 as $indice){
                                     $this->privilegios[]=$indice;
-                                }
-                                var_dump($this->privilegios);
+                                }                             
+
                                 for($d = 0; $d<count($this->privilegios); $d++){                  
-                                    $query[]= $this->privilegios[$d]."','".$_POST['familiar'];
+                                    $query[]= $_POST['familiar']."','".$this->privilegios[$d];
                                     $this->nothingprivilege =  implode("'), ('", $query) ;
                                 }
                                 $final = "('".$this->nothingprivilege."')";
+                             
                                 $this->privilegemodels->agregarmonitoreo($final);
                     break; 
                     default:
