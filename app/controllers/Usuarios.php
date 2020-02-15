@@ -17,6 +17,18 @@ class Usuarios extends Controller{
     }
     public function Editar()
     {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){   
+            //var_dump($_POST['codigo'], $_POST['name'], $_POST['ap_materno'], $_POST['ap_paterno'], $_POST['phone'], $_POST['options']);
+            $datos = [
+            'cod_user' => $_POST['codigo']
+            , 'name' => $_POST['name']
+            , 'ap_paterno' => $_POST['ap_paterno']
+            , 'ap_materno' => $_POST['ap_materno']
+            , 'phone' => $_POST['phone']
+            , 'status' => $_POST['options'] ];
+        $this->usuariosmodels->editaruser($datos);
+                    
+        }
         $this->vista('/Usuarios/Editar');
     }
     public function agregar(){        
@@ -133,7 +145,7 @@ class Usuarios extends Controller{
     public function exportar()
     {
         $this->vista('/Usuarios/Exportar');
-    }
+    }   
 
 
 }

@@ -30,7 +30,7 @@
 </style>
     <!-- Main content -->
     <section class="content">    
-      <form id="formulario" action="">
+      <form  method="POST" action="<?php echo  RUTA_URL; ?>/usuarios/editar" >
       <div class="modal fade" id="modal-actualiza-padre">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -41,15 +41,15 @@
               </button>              
             </div>
           <div class="modal-body">
-      		<input type="text" hidden="" id="cod_user" name="">
+      		<input type="text" hidden="" id="codigo" name="codigo">
         	<label>Nombre</label>
-        	<input type="text" name="" id="name" class="form-control input-sm">
+        	<input type="text" name="name" id="name" class="form-control input-sm">
         	<label>Apellido paterno</label>
-        	<input type="text" name="" id="ap_paterno" class="form-control input-sm">
+        	<input type="text" name="ap_paterno" id="ap_paterno" class="form-control input-sm">
         	<label>apellido materno</label>
-        	<input type="text" name="" id="ap_materno" class="form-control input-sm">
+        	<input type="text" name="ap_materno" id="ap_materno" class="form-control input-sm">
         	<label>telefono</label>
-          <input type="text" name="" id="phone" class="form-control input-sm">
+          <input type="text" name="phone" id="phone" class="form-control input-sm">
           <label>Estado</label>
           <div class=" col-md-12 mx-auto btn-group btn-group-toggle " data-toggle="buttons">
                   <label id="labeldesabilitado" class="btn ">
@@ -65,13 +65,14 @@
       </div>
 
      
-      </form>     
+   
       
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-info " data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-info ">Editar Cambios</button>
+              <button type="submit" id="actualizardatos" class="btn btn-info ">Editar Cambios</button>
             </div>
           </div>
+          </form>    
           <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
@@ -692,22 +693,22 @@
                         <div class="row">
                         <div class=" col-3  " >
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Ver monitoreo ">
-                        <a type="button" id="actualizapadres" data-toggle="modal" data-target="#modal-monitoreo" data-dismiss="modal"  class="text-muted"><i  class="fas fa-map-pin fa-lg"></i></a> 
+                        <a type="button"  data-toggle="modal" data-target="#modal-monitoreo" data-dismiss="modal"  class="text-muted"><i  class="fas fa-map-pin fa-lg"></i></a> 
                         </span>
                        </div>
                       <div class=" col-3  " >   
                         <span class="red-tooltip  " tabindex="0" data-toggle="tooltip" title="Editar información">                                         
-                        <a  type="button" id="actualizapadres" data-toggle="modal" data-target="#modal-actualiza-padre" data-dismiss="modal" onclick="agregaform('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.$estudiantes->phone.'\n'.$estudiantes->status.'\n'.'Padre de familia'; ?>')" ><i   class="fas fa-edit  "></i></a>                                                                      
+                        <a  type="button"  data-toggle="modal" data-target="#modal-actualiza-padre" data-dismiss="modal" onclick="agregaform('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.$estudiantes->phone.'\n'.$estudiantes->status.'\n'.'Padre de familia'; ?>')" ><i   class="fas fa-edit  "></i></a>                                                                      
                         </span>
                         </div>
                         <div class=" col-3  " >   
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Eliminar datos ">                                         
-                        <a  type="button" id="actualizapadres" data-toggle="modal"  data-dismiss="modal"  class=""><i  class="fas fa-trash-alt"></i></a>                                                                      
+                        <a  type="button"  data-toggle="modal"  data-dismiss="modal"  class=""><i  class="fas fa-trash-alt"></i></a>                                                                      
                         </span>
                         </div>
                         <div class=" col-3  " >                                            
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cambiar contraseña ">                                         
-                        <a  type="button" id="actualizapadres" data-toggle="modal"  data-dismiss="modal"  ><i  class="fas fa-key   "></i></a>                                                                      
+                        <a  type="button"  data-toggle="modal"  data-dismiss="modal"  ><i  class="fas fa-key   "></i></a>                                                                      
                         </span>
                         </div>
 
@@ -767,22 +768,25 @@ require_once RUTAL_APP . '/views/templates/footer2.php';
   ,'dist/js/demo.js']);
   //$this->script(['dist/prueba2.js', 'dist/pueba.js']);  
 ?>
+
 <script>
+var ruta  = '<?php echo RUTA_URL; ?>';  
+
+
+
  function agregaform(datos){
 d=datos.split('\n');
-$('#name').val(d[0]);
+$('#codigo').val(d[0]);
 $('#name').val(d[1]);
 $('#ap_materno').val(d[2]);
 $('#ap_paterno').val(d[3]);
 $('#phone').val(d[4]);
-
 var x = document.getElementById("label");
     x.innerHTML = d[6];
 let status = d[5];
 $("#labeldesabilitado").removeClass("active");
 $("#labelhabilitado").removeClass("active");
 $("#labeldeuda").removeClass("active");
-
 if(status == 0){
   $("#labeldesabilitado").addClass("active");    
   $("#labeldesabilitado").addClass("bg-danger"); 
@@ -795,7 +799,6 @@ if(status == 1){
   $("#labelhabilitado").addClass("bg-success"); 
   $("#labeldesabilitado").removeClass("bg-danger");
   $("#labeldeuda").removeClass("bg-warning");
-
   $("#habilitado").prop( "checked", true );  
 }
 if(status == 2){
@@ -807,13 +810,11 @@ if(status == 2){
 }
 //console.log($('input:radio[name=options]:checked').val());
 }
-
 $( "#labeldesabilitado" ).click(function() {
   $("#labeldesabilitado").addClass("bg-danger"); 
   $("#labelhabilitado").removeClass("bg-success");
   $("#labeldeuda").removeClass("bg-warning");
 });
-
 $( "#labelhabilitado" ).click(function() {
   $("#labelhabilitado").addClass("bg-success"); 
   $("#labeldesabilitado").removeClass("bg-danger");
@@ -837,3 +838,46 @@ $( "#labeldeuda" ).click(function() {
     $("#padre").DataTable();   
   });
 </script>
+<script>
+       
+  function jsfunction(codigo){    
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 4000
+    });    
+    switch(codigo){
+      case 10000:
+        $(function() {
+    toastr.warning('Los datos fueron Editados satisfactoriamente')
+  });   
+  break;
+      case 23000:
+        $(function() {
+    toastr.error('Se produjo un error en la base de datos')
+  });
+    break;
+    case 20000:
+      $(function() {
+    toastr.error('Error en la base de datos')
+  });
+  break;
+  case 30000:
+      $(function() {
+    toastr.error('Error de duplicado en la base de datos')
+  });
+  break;
+
+    }       
+  }    
+  </script>
+
+<?php
+if( isset($_GET['mensage'])){
+  $error = $_GET['mensage'];      
+  ?>
+  <script> jsfunction(<?php echo $error; ?>);</script>
+  <?php  
+}
+?>

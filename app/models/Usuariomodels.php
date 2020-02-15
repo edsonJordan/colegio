@@ -50,6 +50,33 @@ class Usuariomodels{
         $this->db->query("SELECT u.cod_user, u.name, u.ap_paterno, u.ap_materno from tb_user u, tb_type_user t WHERE u.cod_type_user = t.cod_type_user and t.type= '$codigo' ");
         return $this->db->registros();
     }
+    public function editaruser($datos)
+    {
+        $this->db->query('UPDATE tb_user set name = :name, ap_materno = :ap_materno, ap_paterno = :ap_paterno, phone = :phone, status = :status 
+        WHERE cod_user = :cod_user');
+        //vincular valores
+        $this->db->bind(':cod_user', $datos['cod_user']);
+        $this->db->bind(':name', $datos['name']);
+        $this->db->bind(':ap_materno', $datos['ap_materno']);
+        $this->db->bind(':ap_paterno', $datos['ap_paterno']);
+        $this->db->bind(':phone', $datos['phone']);
+        $this->db->bind(':status', $datos['status']);
+        try{           
+            $this->db->execute();
+            rediccionar('/usuarios/visualizar?mensage=10000');
+        }catch(PDOException $e){
+            $this->mensaje = $e->getMessage();
+            $this->error = $e->getCode();                
+            switch($this->error){
+                case 23000:                                                         
+                    rediccionar('/usuarios/visualizar?mensage='.$this->error);                    
+                break;
+                case "HY000":
+                    rediccionar('/usuarios/visualizar?mensage=20000');
+                break;
+            }       
+        }  
+    }
     
 }
 ?>
