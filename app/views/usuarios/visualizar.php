@@ -15,7 +15,11 @@
   ]);
   require_once RUTAL_APP . '/views/templates/header2.php'; 
   require_once RUTAL_APP . '/views/templates/head.php'; 
+
 ?>
+   
+
+
 <style>
 .fa-edit:hover{
   color:orange;
@@ -29,6 +33,7 @@
 }
 </style>
     <!-- Main content -->
+    
     <section class="content">    
       <form  method="POST" action="<?php echo  RUTA_URL; ?>/usuarios/editar" >
       <div class="modal fade" id="modal-actualiza-padre">
@@ -78,6 +83,8 @@
         <!-- /.modal-dialog -->
       </div>
 
+
+
       <form id="formulario" action="">
       <div class="modal fade" id="modal-monitoreo">
         <div class="modal-dialog">
@@ -89,8 +96,10 @@
               </button>              
             </div>
           <div class="modal-body">
-      		<div class="row">
-          <div class="col-md-6">
+      		<div class="row">         
+        
+
+          <div class="col-md-12">
             <div class="card card-success">
               <div class="card-header">
                 <h3 class="card-title">Collapsable</h3>
@@ -102,200 +111,31 @@
                 <!-- /.card-tools -->
               </div>
               <!-- /.card-header -->
+             
               <div class="card-body">
-                The body of the card
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                          <th>Codigo</th>
+                          <th>Nombre</th>
+                          <th>Apellidos</th>                          
+                          <th>Operación</th>
+                        </thead>
+                          <tbody id ="res">
+
+                          </tbody>
+                    </table>
               </div>
               <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <div class="col-md-6">
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Collapsable</h3>
 
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                The body of the card
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <div class="col-md-6">
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Collapsable</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                The body of the card
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <div class="col-md-6">
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Collapsable</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                The body of the card
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <div class="col-md-6">
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Collapsable</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                The body of the card
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-
-          <div class="col-md-6">
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Collapsable</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                The body of the card
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-
-
-          <div class="col-md-6">
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Collapsable</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                The body of the card
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-
-
-
-          <div class="col-md-6">
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Collapsable</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                The body of the card
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-
-
-
-          <div class="col-md-6">
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Collapsable</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                The body of the card
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-
-
-
-          <div class="col-md-6">
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Collapsable</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                The body of the card
-              </div>
-              <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
           </div>
       </div>
 
-     
+            <div class="modal-footer justify-content-between">
+              <!-- <button type="button" class="btn btn-info " data-dismiss="modal">Close</button>               -->
+            </div>     
       </form>     
           </div>
           <!-- /.modal-content -->
@@ -354,8 +194,7 @@
                           break;
                           case 2:
                             echo "<span class='badge bg-warning'>Deuda pendiente</span>";
-                          break;
-                          
+                          break;                          
                         }
                         ?></td>
                         <td class="text-center">
@@ -693,7 +532,7 @@
                         <div class="row">
                         <div class=" col-3  " >
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Ver monitoreo ">
-                        <a type="button"  data-toggle="modal" data-target="#modal-monitoreo" data-dismiss="modal"  class="text-muted"><i  class="fas fa-map-pin fa-lg"></i></a> 
+                        <button type="button" class="monitoreo" value="<?php echo $estudiantes->cod_user; ?>"  data-toggle="modal" data-target="#modal-monitoreo" data-dismiss="modal" ><i  class="fas fa-map-pin fa-lg"></i></button> 
                         </span>
                        </div>
                       <div class=" col-3  " >   
@@ -755,6 +594,10 @@
     <!-- /.content -->
   </div>            
     <!-- /.row -->
+    <div id="resultado">
+      
+    </div>
+ 
 <?php 
 require_once RUTAL_APP . '/views/templates/footer2.php'; 
   $this->script([
@@ -768,10 +611,48 @@ require_once RUTAL_APP . '/views/templates/footer2.php';
   ,'dist/js/demo.js']);
   //$this->script(['dist/prueba2.js', 'dist/pueba.js']);  
 ?>
-
 <script>
-var ruta  = '<?php echo RUTA_URL; ?>';  
+var ruta  = '<?php echo RUTA_URL; ?>'; 
 
+
+
+$('.monitoreo').on('click', function(){	
+	var valor = $(this).val();
+  var datos_enviados = {
+  'buscar' : valor
+  }
+  jQuery.ajax({
+        type: "POST",
+        data: datos_enviados,      
+        url: ruta + '/ajax/prueba.php',        
+        datatype: 'json',        
+         success:function(data) {
+          //console.log(data['datos'][0]);                                                
+          //console.log(data);
+          let res = document.querySelector('#res');
+          res.innerHTML= '';
+          var table = $("#resultado");
+          var DatosJson = JSON.parse(JSON.stringify(data));          
+          /* for($i = 0 ; $i< DatosJson.length; $i++){            
+            //console.log(data[$i][0]['cod_user']+ " " + data[$i][0]['name']+ " "+ data[$i][0]['ap_paterno'] + " " + data[$i][0]['ap_paterno']);                                  
+          } */
+          for(let item of data){
+          //  console.log(item[0].name);
+          res.innerHTML+=`          
+          <tr>
+            <td>${item[0].cod_user}</td>
+            <td>${item[0].name}</td>
+            <td>${item[0].ap_materno} ${item[0].ap_paterno} </td>
+            <td class="text-center"> <a  type="button"  class=""><i  class="fas fa-trash-alt"></i></a>                                                                      </td>
+          </tr>
+          `            
+          }
+         }
+    });
+	});  
+var consulta = {
+  'codigo' : 8
+};
 
 
  function agregaform(datos){
@@ -839,7 +720,7 @@ $( "#labeldeuda" ).click(function() {
   });
 </script>
 <script>
-       
+
   function jsfunction(codigo){    
     const Toast = Swal.mixin({
       toast: true,
@@ -877,7 +758,7 @@ $( "#labeldeuda" ).click(function() {
 if( isset($_GET['mensage'])){
   $error = $_GET['mensage'];      
   ?>
-  <script> jsfunction(<?php echo $error; ?>);</script>
+    <script> jsfunction(<?php echo $error; ?>);</script>    
   <?php  
 }
 ?>

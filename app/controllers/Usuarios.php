@@ -102,8 +102,7 @@ class Usuarios extends Controller{
                                     rediccionar('/usuarios/agregar?mensage=30000');                            
                                 }
                     break;
-                    case null:  
-                                                      
+                    case null:                                                        
                                 //no hay ningun privilegio repetido en los valores                            
                                 $valor1 = array_diff($values, $this->asd);
                                 foreach($valor1 as $indice){
@@ -137,6 +136,7 @@ class Usuarios extends Controller{
     }
     public function visualizar()
     {        
+        
         $usuarios = $this->usuariosmodels->getusuarios();        
         $datos =['usuarios' => $usuarios];
         $this->vista('/Usuarios/Visualizar', $datos);        

@@ -5,6 +5,7 @@ define('DB_USER', 'root');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'db_colegio');
 define('RUTAL_APP', dirname(dirname(__FILE__)));
+define('APP', 'http://localhost:8080/app/');
 /* RUTA DEL SISTEMA GENERAL */
 define('RUTA_URL', 'http://localhost:8080/colegio');
 define('RUTA_RECURSO','http://localhost:8080/colegio/public');

@@ -1,4 +1,5 @@
 <?php 
+
 class Base {
 
     private $host= DB_HOST;
