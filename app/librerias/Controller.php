@@ -58,7 +58,7 @@ class Controller{
     }
     public function link($public = []){          
         echo "<link  rel='stylesheet' href="."https:code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css>";
-        echo "<link  rel='stylesheet' href="."https:fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700>";
+            
         for($i=0; $i<count($public); $i++){
             if(file_exists('../public/'.$public[$i])){                
                 echo "<link  rel='stylesheet' href=".'../public/'.$public[$i].">";
@@ -68,6 +68,7 @@ class Controller{
     
             }
         }
+        echo "<link  rel='stylesheet' href="."https:fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700>";
     }
 
 

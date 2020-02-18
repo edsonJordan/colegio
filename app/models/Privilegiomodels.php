@@ -21,9 +21,11 @@ class Privilegiomodels{
             $this->error = $e->getCode();                
             echo $this->mensaje;
             }       
-        } 
-        
-
-
-
+    } 
+    public function eliminar_user_privilege($datos)
+    {
+        $this->db->query("delete from tb_privilege where privilege = :cod_user");                      
+        $this->db->bind(':cod_user', $datos['cod_user']);     
+        $this->db->execute();
+    }        
 }

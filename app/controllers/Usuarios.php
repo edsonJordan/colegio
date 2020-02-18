@@ -141,7 +141,15 @@ class Usuarios extends Controller{
         $datos =['usuarios' => $usuarios];
         $this->vista('/Usuarios/Visualizar', $datos);        
     }
-    
+    public function eliminar()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $datos =['cod_user' => $_POST['codigo']];
+            $this->privilegemodels->eliminar_user_privilege($datos);
+            $this->usuariosmodels->eliminarusuario($datos);
+        }
+        $this->vista('/Usuarios/Eliminar');   
+    }
     public function exportar()
     {
         $this->vista('/Usuarios/Exportar');

@@ -77,6 +77,21 @@ class Usuariomodels{
             }       
         }  
     }
+    public function eliminarusuario($datos)
+    {
+        $this->db->query("delete from tb_user where cod_user= :cod_user");                      
+        $this->db->bind(':cod_user', $datos['cod_user']);
+        try{           
+            $this->db->execute();
+            rediccionar('/usuarios/visualizar?mensage=30000');
+        }catch(PDOException $e){
+            $this->mensaje = $e->getMessage();
+            $this->error = $e->getCode();                
+            echo $this->mensaje;       
+        }  
+
+
+    }
     
 }
 ?>

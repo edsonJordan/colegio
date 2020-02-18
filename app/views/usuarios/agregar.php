@@ -4,8 +4,8 @@
   $controlador = $url[1];
   $metodo = $url[2];
   
-  require RUTAL_APP . '/views/templates/header.php'; 
-  require RUTAL_APP . '/views/templates/head.php'; 
+  require_once RUTAL_APP . '/views/templates/header.php'; 
+  require_once RUTAL_APP . '/views/templates/head.php'; 
 ?>
 <section class="content">
       <div class="container-fluid">
@@ -160,7 +160,9 @@
     		return true;
         } else {
             //Si llega hasta aca significa que pulsaron 2 veces el boton submit
-            alert("El formulario ya se esta enviando");
+            $(function() {
+          toastr.warning('Los datos ya fueron enviados')
+            }); 
             return false;
         }
     }    

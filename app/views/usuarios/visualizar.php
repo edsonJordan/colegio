@@ -3,23 +3,20 @@
   $url = explode('/', $vista);
   $controlador = $url[1];
   $metodo = $url[2];  
-  
   require RUTAL_APP . '/views/templates/indice2.php'; 
-
   $this->link(['plugin/fontawesome-free/css/all.min.css'
+  ,'plugin/overlayScrollbars/css/OverlayScrollbars.min.css'
+  ,'plugin/bootstrap/js/bootstrap.bundle.min.js'
   ,'plugin/select2/css/select2.min.css'
-  ,'plugin/select2-bootstrap4-theme/select2-bootstrap4.min.css'
-  ,'plugin/datatables-bs4/css/dataTables.bootstrap4.css'
-  ,'dist/css/adminlte.min.css'
+  ,'plugin/select2-bootstrap4-theme/select2-bootstrap4.min.css'  
+  ,'plugin/datatables-bs4/css/dataTables.bootstrap4.css'  
   ,'plugin/toastr/toastr.min.css'
+  ,'dist/css/adminlte.min.css'
   ]);
   require_once RUTAL_APP . '/views/templates/header2.php'; 
   require_once RUTAL_APP . '/views/templates/head.php'; 
 
-?>
-   
-
-
+?>  
 <style>
 .fa-edit:hover{
   color:orange;
@@ -36,10 +33,10 @@
     
     <section class="content">    
       <form  method="POST" action="<?php echo  RUTA_URL; ?>/usuarios/editar" >
-      <div class="modal fade" id="modal-actualiza-padre">
+      <div class="modal fade" id="modal-actualiza-user">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header bg-info">
+            <div class="modal-header bg-warning">
               <h4 class="modal-title"> <i  class="fas fa-edit "></i> Actualizar <label for="customSwitch3" id="label" ></label></h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -67,14 +64,37 @@
                     <input type="radio" name="options" id="deudapendiente" value="2" autocomplete="off" >Deuda Pendiente
                   </label>                  
                 </div>
-      </div>
-
-     
-   
-      
+      </div>              
             <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-info " data-dismiss="modal">Close</button>
-              <button type="submit" id="actualizardatos" class="btn btn-info ">Editar Cambios</button>
+              <button type="button" class="btn btn-light " data-dismiss="modal">Cancelar</button>
+              <button type="submit" id="actualizardatos" class="btn btn-light ">Aceptar</button>
+            </div>
+          </div>
+          </form>    
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>      
+        <!-- /.modal-dialog -->
+        <form  method="POST" action="<?php echo  RUTA_URL; ?>/usuarios/eliminar" >
+      <div class="modal fade" id="modal-elimina-user">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-danger">
+              <h4 class="modal-title"> <i  class="fas fa-trash-alt "></i> Eliminar Usuario <label for="customSwitch3" id="label" ></label></h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>              
+            </div>
+            <input type="text" hidden="" id="codigo-user-delete" name="codigo">
+          <div class="modal-body text-center">
+                <span>Los datos  de  <b id="cod-user"> </b>se borraran de manera permanente</span>
+                <br>
+                <span>¿Seguro?</span>
+          </div>              
+            <div class="modal-footer justify-content-between">
+            <button type="submit" class="btn btn-light ">Aceptar</button>  
+            <button type="button" class="btn btn-light " data-dismiss="modal">Cancelar</button>              
             </div>
           </div>
           </form>    
@@ -82,9 +102,6 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
-
-
-
       <form id="formulario" action="">
       <div class="modal fade" id="modal-monitoreo">
         <div class="modal-dialog">
@@ -102,7 +119,7 @@
           <div class="col-md-12">
             <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title">Collapsable</h3>
+                <h3 class="card-title">Datos</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -113,7 +130,7 @@
               <!-- /.card-header -->
              
               <div class="card-body">
-                    <table class="table table-bordered table-striped">
+                    <table id="tablamonitoreo" class="table table-bordered table-striped">
                         <thead>
                           <th>Codigo</th>
                           <th>Nombre</th>
@@ -122,7 +139,7 @@
                         </thead>
                           <tbody id ="res">
 
-                          </tbody>
+                          </tbody>                         
                     </table>
               </div>
               <!-- /.card-body -->
@@ -169,7 +186,7 @@
                     <th>Apellidos</th>
                     <th>Telefono</th>
                     <th>Estado</th>
-                    <th>Más</th>                                             
+                    <th>Operaciones</th>                                             
                   </tr>
                 </thead>
                 <tbody>         
@@ -198,7 +215,25 @@
                         }
                         ?></td>
                         <td class="text-center">
-                        <a    href="<?php echo RUTA_URL; ?>/usuarios/ver/<?php echo $estudiantes->cod_user;  ?>" class="text-muted"><i  class="fas fa-search text-lightblue"></i></a>                        
+                        <div class="row">
+                       
+                      <div class=" col-4  " >   
+                        <span class="red-tooltip  " tabindex="0" data-toggle="tooltip" title="Editar información">                                         
+                        <a  type="button"  data-toggle="modal" data-target="#modal-actualiza-user" data-dismiss="modal" onclick="agregaformedit('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.$estudiantes->phone.'\n'.$estudiantes->status.'\n'.'Padre de familia'; ?>')" ><i   class="fas fa-edit  "></i></a>                                                                      
+                        </span>
+                        </div>
+                        <div class=" col-4  " >   
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Eliminar datos ">                                         
+                        <a  type="button"  data-toggle="modal" data-target="#modal-elimina-user"  data-dismiss="modal"  onclick="agregaformdelete('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.'Padre de familia'; ?>')" class=""><i  class="fas fa-trash-alt"></i></a>                                                                      
+                        </span>
+                        </div>
+                        <div class=" col-4  " >                                            
+                        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cambiar contraseña ">                                         
+                        <a  type="button"  data-toggle="modal"  data-dismiss="modal"  ><i  class="fas fa-key   "></i></a>                                                                      
+                        </span>
+                        </div>
+                        </div>   
+
                       </td>
                     </tr>
                         <?php 
@@ -216,7 +251,7 @@
                       <th>Apellidos</th>
                       <th>Telefono</th>
                       <th>Estado</th>
-                      <th>Más</th>                                          
+                      <th>Operaciones</th>                                          
                   </tr>
                 </tfoot>
               </table>
@@ -283,7 +318,26 @@
                           
                         }
                         ?></td>
-                        <td> editar</td>
+                        <td>
+                        <div class="row">
+                       
+                       <div class=" col-4  " >   
+                         <span class="red-tooltip  " tabindex="0" data-toggle="tooltip" title="Editar información">                                         
+                         <a  type="button"  data-toggle="modal" data-target="#modal-actualiza-user" data-dismiss="modal" onclick="agregaformedit('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.$estudiantes->phone.'\n'.$estudiantes->status.'\n'.'Padre de familia'; ?>')" ><i   class="fas fa-edit  "></i></a>                                                                      
+                         </span>
+                         </div>
+                         <div class=" col-4  " >   
+                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Eliminar datos ">                                         
+                         <a  type="button"  data-toggle="modal" data-target="#modal-elimina-user"  data-dismiss="modal"  onclick="agregaformdelete('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.'Padre de familia'; ?>')" class=""><i  class="fas fa-trash-alt"></i></a>                                                                      
+                         </span>
+                         </div>
+                         <div class=" col-4  " >                                            
+                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cambiar contraseña ">                                         
+                         <a  type="button"  data-toggle="modal"  data-dismiss="modal"  ><i  class="fas fa-key   "></i></a>                                                                      
+                         </span>
+                         </div>
+                         </div>  
+                        </td>
                     </tr>
                         <?php 
                         break; 
@@ -365,7 +419,26 @@
                           break;                          
                         }
                         ?></td>
-                        <td> editar</td>
+                        <td>
+                        <div class="row">
+                       
+                       <div class=" col-4  " >   
+                         <span class="red-tooltip  " tabindex="0" data-toggle="tooltip" title="Editar información">                                         
+                         <a  type="button"  data-toggle="modal" data-target="#modal-actualiza-user" data-dismiss="modal" onclick="agregaformedit('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.$estudiantes->phone.'\n'.$estudiantes->status.'\n'.'Padre de familia'; ?>')" ><i   class="fas fa-edit  "></i></a>                                                                      
+                         </span>
+                         </div>
+                         <div class=" col-4  " >   
+                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Eliminar datos ">                                         
+                         <a  type="button"  data-toggle="modal" data-target="#modal-elimina-user"  data-dismiss="modal"  onclick="agregaformdelete('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.'Padre de familia'; ?>')" class=""><i  class="fas fa-trash-alt"></i></a>                                                                      
+                         </span>
+                         </div>
+                         <div class=" col-4  " >                                            
+                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cambiar contraseña ">                                         
+                         <a  type="button"  data-toggle="modal"  data-dismiss="modal"  ><i  class="fas fa-key   "></i></a>                                                                      
+                         </span>
+                         </div>
+                         </div>  
+                        </td>
                     </tr>
                         <?php 
                         break; 
@@ -446,7 +519,26 @@
                           
                         }
                         ?></td>
-                        <td> editar</td>
+                        <td> 
+                        <div class="row">
+                       
+                       <div class=" col-4  " >   
+                         <span class="red-tooltip  " tabindex="0" data-toggle="tooltip" title="Editar información">                                         
+                         <a  type="button"  data-toggle="modal" data-target="#modal-actualiza-user" data-dismiss="modal" onclick="agregaformedit('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.$estudiantes->phone.'\n'.$estudiantes->status.'\n'.'Padre de familia'; ?>')" ><i   class="fas fa-edit  "></i></a>                                                                      
+                         </span>
+                         </div>
+                         <div class=" col-4  " >   
+                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Eliminar datos ">                                         
+                         <a  type="button"  data-toggle="modal" data-target="#modal-elimina-user"  data-dismiss="modal"  onclick="agregaformdelete('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.'Padre de familia'; ?>')" class=""><i  class="fas fa-trash-alt"></i></a>                                                                      
+                         </span>
+                         </div>
+                         <div class=" col-4  " >                                            
+                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Cambiar contraseña ">                                         
+                         <a  type="button"  data-toggle="modal"  data-dismiss="modal"  ><i  class="fas fa-key   "></i></a>                                                                      
+                         </span>
+                         </div>
+                         </div>  
+                        </td>
                     </tr>
                         <?php 
                         break; 
@@ -526,23 +618,22 @@
                             echo "<span class='badge bg-warning'>Deuda pendiente</span>";
                           break;                          
                         }
-                        ?></td>
-                     
+                        ?></td>                     
                         <td class="text-center">
                         <div class="row">
                         <div class=" col-3  " >
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Ver monitoreo ">
-                        <button type="button" class="monitoreo" value="<?php echo $estudiantes->cod_user; ?>"  data-toggle="modal" data-target="#modal-monitoreo" data-dismiss="modal" ><i  class="fas fa-map-pin fa-lg"></i></button> 
+                        <button style="background: transparent; border:0px;" type="button"  onclick="vermonitoreo(<?php echo $estudiantes->cod_user; ?>)"  data-toggle="modal" data-target="#modal-monitoreo" data-dismiss="modal" ><i  class="fas fa-map-pin fa-lg"></i></button> 
                         </span>
                        </div>
                       <div class=" col-3  " >   
                         <span class="red-tooltip  " tabindex="0" data-toggle="tooltip" title="Editar información">                                         
-                        <a  type="button"  data-toggle="modal" data-target="#modal-actualiza-padre" data-dismiss="modal" onclick="agregaform('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.$estudiantes->phone.'\n'.$estudiantes->status.'\n'.'Padre de familia'; ?>')" ><i   class="fas fa-edit  "></i></a>                                                                      
+                        <a  type="button"  data-toggle="modal" data-target="#modal-actualiza-user" data-dismiss="modal" onclick="agregaformedit('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.$estudiantes->phone.'\n'.$estudiantes->status.'\n'.'Padre de familia'; ?>')" ><i   class="fas fa-edit  "></i></a>                                                                      
                         </span>
                         </div>
                         <div class=" col-3  " >   
                         <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Eliminar datos ">                                         
-                        <a  type="button"  data-toggle="modal"  data-dismiss="modal"  class=""><i  class="fas fa-trash-alt"></i></a>                                                                      
+                        <a  type="button"  data-toggle="modal" data-target="#modal-elimina-user"  data-dismiss="modal"  onclick="agregaformdelete('<?php echo $estudiantes->cod_user.'\n'.$estudiantes->name.'\n'.$estudiantes->ap_materno.'\n'.$estudiantes->ap_paterno.'\n'.'Padre de familia'; ?>')" class=""><i  class="fas fa-trash-alt"></i></a>                                                                      
                         </span>
                         </div>
                         <div class=" col-3  " >                                            
@@ -550,9 +641,7 @@
                         <a  type="button"  data-toggle="modal"  data-dismiss="modal"  ><i  class="fas fa-key   "></i></a>                                                                      
                         </span>
                         </div>
-
-                        </div>
-                       
+                        </div>                       
                         </td>
                     </tr>
                         <?php 
@@ -601,61 +690,70 @@
 <?php 
 require_once RUTAL_APP . '/views/templates/footer2.php'; 
   $this->script([
-    'plugin/jquery/jquery.min.js'
+    'plugin/jquery/jquery.min.js'  
   ,'plugin/bootstrap/js/bootstrap.bundle.min.js'
   ,'plugin/datatables/jquery.dataTables.js'
   ,'plugin/sweetalert2/sweetalert2.min.js'
   ,'plugin/toastr/toastr.min.js'
   ,'plugin/datatables-bs4/js/dataTables.bootstrap4.js'
+  ,'plugin/overlayScrollbars/js/jquery.overlayScrollbars.min.js'
   ,'dist/js/adminlte.min.js'
   ,'dist/js/demo.js']);
   //$this->script(['dist/prueba2.js', 'dist/pueba.js']);  
 ?>
 <script>
 var ruta  = '<?php echo RUTA_URL; ?>'; 
-
-
-
-$('.monitoreo').on('click', function(){	
-	var valor = $(this).val();
+function vermonitoreo(dato){
+	
   var datos_enviados = {
-  'buscar' : valor
+  'buscar' : dato
   }
+  console.log(datos_enviados);
   jQuery.ajax({
         type: "POST",
         data: datos_enviados,      
         url: ruta + '/ajax/prueba.php',        
         datatype: 'json',        
-         success:function(data) {
-          //console.log(data['datos'][0]);                                                
-          //console.log(data);
+         success:function(data) {                  
           let res = document.querySelector('#res');
           res.innerHTML= '';
           var table = $("#resultado");
-          var DatosJson = JSON.parse(JSON.stringify(data));          
+          let DatosJson = JSON.parse(JSON.stringify(data));          
           /* for($i = 0 ; $i< DatosJson.length; $i++){            
             //console.log(data[$i][0]['cod_user']+ " " + data[$i][0]['name']+ " "+ data[$i][0]['ap_paterno'] + " " + data[$i][0]['ap_paterno']);                                  
-          } */
-          for(let item of data){
-          //  console.log(item[0].name);
-          res.innerHTML+=`          
-          <tr>
-            <td>${item[0].cod_user}</td>
-            <td>${item[0].name}</td>
-            <td>${item[0].ap_materno} ${item[0].ap_paterno} </td>
-            <td class="text-center"> <a  type="button"  class=""><i  class="fas fa-trash-alt"></i></a>                                                                      </td>
-          </tr>
-          `            
-          }
+          } */  
+        console.log(data)                  ;
+         if(data === null){
+           res.innerHTML+=`<tr>
+           <td class="text-center" colspan="4" >Sin Datos </td>
+           </tr>`
+         }
+         else{
+          for(let item of data){                   
+            res.innerHTML+=`          
+            <tr>
+              <td>${item[0].cod_user}</td>
+              <td>${item[0].name}</td>
+              <td>${item[0].ap_materno} ${item[0].ap_paterno} </td>
+              <td class="text-center"> <a  href="`+ruta+`/usuarios/eliminar/${item[0].cod_user}" data-toggle="tooltip" title="Eliminar Monitoreo"  type="button"  class=""><i  class="fas fa-trash-alt"></i></a>                                                                      </td>
+            </tr>
+            `            
+            }   
+         }
+           /*   */                         
          }
     });
-	});  
-var consulta = {
-  'codigo' : 8
-};
+}
 
+  function agregaformdelete(datos){    
+    d=datos.split('\n');  
+    var x= document.getElementById("cod-user");
+    x.innerHTML= d[1]+" "+d[3]+" "+ d[2]+ " ";
+    $('#codigo-user-delete').val(d[0]);
 
- function agregaform(datos){
+  }
+
+ function agregaformedit(datos){
 d=datos.split('\n');
 $('#codigo').val(d[0]);
 $('#name').val(d[1]);
@@ -716,8 +814,8 @@ $( "#labeldeuda" ).click(function() {
     $("#docente").DataTable();
     $("#auxiliar").DataTable();
     $("#secretaria").DataTable();
-    $("#padre").DataTable();   
-  });
+    $("#padre").DataTable();       
+    });
 </script>
 <script>
 
@@ -731,7 +829,7 @@ $( "#labeldeuda" ).click(function() {
     switch(codigo){
       case 10000:
         $(function() {
-    toastr.warning('Los datos fueron Editados satisfactoriamente')
+    toastr.success('Los datos fueron Editados satisfactoriamente')
   });   
   break;
       case 23000:
@@ -746,14 +844,12 @@ $( "#labeldeuda" ).click(function() {
   break;
   case 30000:
       $(function() {
-    toastr.error('Error de duplicado en la base de datos')
+    toastr.success('Los datos fueron borrados correctamente')
   });
   break;
-
     }       
   }    
   </script>
-
 <?php
 if( isset($_GET['mensage'])){
   $error = $_GET['mensage'];      
@@ -762,3 +858,4 @@ if( isset($_GET['mensage'])){
   <?php  
 }
 ?>
+
